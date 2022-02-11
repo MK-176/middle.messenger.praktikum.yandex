@@ -1,8 +1,8 @@
-@import '../components/button/button';
-@import '../components/input/input';
-@import '../components/modal/modal';
-@import '../components/title/title';
-@import '../components/Preloader/preloader';
+@import './button';
+@import './input';
+@import './modal';
+@import './title';
+@import './preloader';
 @import './page';
 @import './chat-contacts';
 @import './sidebar';
@@ -15,4 +15,4 @@
 @import './main-form';
 @import './chat';
 @import './list-item';
-@import '../components/modal/modal';
+@import './modal';
