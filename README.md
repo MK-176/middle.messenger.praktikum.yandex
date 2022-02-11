@@ -17,6 +17,6 @@ npm run start
 - [Страница регистрации](https://cocky-shannon-993c10.netlify.app/register.html)
 - [Страница изменения данных пользователя](https://cocky-shannon-993c10.netlify.app/change-data.html)
 - [Страница изменения пароля пользователя](https://cocky-shannon-993c10.netlify.app/change-password.html)
-- [Страница с данными пользователя][https://cocky-shannon-993c10.netlify.app/profile.html)
+- [Страница с данными пользователя](https://cocky-shannon-993c10.netlify.app/profile.html)
 - [Ошибка 404](https://cocky-shannon-993c10.netlify.app/404.html)
 - [Ошибка 500](https://cocky-shannon-993c10.netlify.app/500.html)
