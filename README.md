@@ -1,4 +1,5 @@
 # Messenger
+Реализация функционала мессенджера, нацеленная на развитие хардскилов
 
 ## Sprint 1
 [Это прототип мессенджера в Figma](https://www.figma.com/file/HBucROmcriLA8AMnyJnmvI/Messenger?node-id=0%3A1)
