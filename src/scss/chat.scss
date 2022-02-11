@@ -1,0 +1,85 @@
+@import './variables';
+
+@mixin modal {
+  position: relative;
+
+  &-block {
+    position: absolute;
+  }
+}
+
+.chat {
+  display: flex;
+
+  &__title {
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__user {
+    display: flex;
+    align-items: center;
+
+    &-avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background-color: $color-bg-additional;
+      margin-right: 10px;
+    }
+
+    &-name {
+      font-weight: $font-bold;
+    }
+  }
+
+  &__config {
+    @include modal();
+
+    &-block {
+      width: 220px;
+      top: calc(100% + 25px);
+      right: 0;
+    }
+  }
+
+  &__block {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0 20px;
+  }
+
+  &__content {
+    flex-grow: 1;
+    border-top: 1px solid $color-border;
+    border-bottom: 1px solid $color-border;
+    max-height: calc(100vh - 110px);
+    @include scrollStyle();
+  }
+
+  &__tools {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+  }
+
+  &__write {
+    flex-grow: 1;
+    margin: 0 10px;
+  }
+
+  &__add {
+    @include modal();
+
+    &-block {
+      bottom: calc(100% + 25px);
+      width: 165px;
+      left: 0;
+    }
+  }
+}

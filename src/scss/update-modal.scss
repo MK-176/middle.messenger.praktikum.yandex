@@ -1,0 +1,26 @@
+@import './variables';
+
+.update-modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+
+  &__title {
+    color: $color;
+    font-size: 15px;
+    font-weight: $font-medium;
+    padding: 10px 0;
+  }
+
+  &__block {
+    .link {
+      font-size: 12px;
+      text-decoration: underline;
+    }
+  }
+
+  &__footer {
+    padding: 10px 0;
+  }
+}

@@ -1,0 +1,97 @@
+@import './variables';
+
+.messages {
+  display: flex;
+  flex-direction: column;
+
+  &__date {
+    margin: 50px 0 30px;
+    text-align: center;
+    color: $color-additional;
+    font-weight: $font-medium;
+  }
+}
+
+$msg: '.message';
+
+#{$msg} {
+  font-weight: $font-medium;
+  border-radius: 20px;
+  padding: 15px;
+  background: $color-bg-additional;
+  max-width: 400px;
+  overflow: hidden;
+  position: relative;
+  margin: 20px 0;
+
+  &.someone {
+    align-self: flex-start;
+    background-color: $color-bg-msg;
+
+    #{$msg} {
+      &__meta {
+        color: $color-status-text;
+      }
+    }
+  }
+
+  &.mine {
+    align-self: flex-end;
+    background-color: $color-bg-active;
+
+    #{$msg} {
+      &__meta {
+        color: $color-status-mine;
+      }
+    }
+  }
+
+  &.media {
+    #{$msg} {
+      &__meta {
+        color: $color-button;
+        border-radius: 15px;
+        padding: 5px 10px;
+        position: absolute;
+        bottom: 15px;
+        right: 15px;
+      }
+    }
+
+    &.mine {
+      #{$msg} {
+        &__meta {
+          background-color: $color-status-mine;
+        }
+      }
+    }
+
+    &.someone {
+      #{$msg} {
+        &__meta {
+          background-color: $color-status-media;
+        }
+      }
+    }
+  }
+
+  &__content {
+    float: left;
+  }
+
+  &__meta {
+    font-size: 9px;
+    float: right;
+    padding: 0 0 0 15px;
+    margin-left: 15px;
+
+    &.status {
+      margin-top: 3px;
+      background: url("data:image/svg+xml,%3Csvg fill='%233369F3' xmlns='http://www.w3.org/2000/svg' width='7.14' height='5' viewBox='0 0 7.14 5'%3E%3Cpolygon points='3.62 4.25 7.14 0.75 6.38 0 2.86 3.5 0.76 1.42 0 2.17 2.1 4.25 2.1 4.25 2.5 4.65 2.86 5 2.86 5 2.86 5 3.22 4.64 3.62 4.25 3.62 4.25'/%3E%3C/svg%3E%0A") no-repeat left center;
+
+      &.seen {
+        background-image: url("data:image/svg+xml,%3Csvg fill='%233369F3' xmlns='http://www.w3.org/2000/svg' width='10' height='5' viewBox='0 0 10 5'%3E%3Cpolygon points='3.62 4.25 7.14 0.75 6.38 0 2.86 3.5 0.76 1.42 0 2.17 2.1 4.25 2.1 4.25 2.5 4.65 2.86 5 2.86 5 2.86 5 3.22 4.64 3.62 4.25 3.62 4.25'/%3E%3Cpolygon points='9.24 0 4.95 4.25 5.72 5 10 0.75 9.24 0'/%3E%3C/svg%3E%0A");
+      }
+    }
+  }
+}

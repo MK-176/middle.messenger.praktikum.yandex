@@ -1,0 +1,35 @@
+@import './variables';
+
+$modal: '.main-form';
+
+#{$modal} {
+  width: 340px;
+  background-color: $color-bg;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);
+  border-radius: 12px;
+  padding: 50px 30px 30px;
+  margin-left: -170px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%);
+
+  &__footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+  }
+
+  &--auth {
+    #{$modal} {
+      &__middle {
+        min-height: 270px;
+      }
+
+      &__footer {
+        height: 65px;
+      }
+    }
+  }
+}

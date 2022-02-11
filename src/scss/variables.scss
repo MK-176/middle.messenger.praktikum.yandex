@@ -1,0 +1,52 @@
+$font-regular: 400;
+$font-medium: 500;
+$font-bold: 600;
+
+$font-size: 13px;
+
+$color-button: #fff;
+$color-button-additional: #F5F5F5;
+$color-active: #3369f3;
+$color-active-additional: #0a4cff;
+$color-error: #FF2F2F;
+$color: #1E1E1E;
+$color-bg: #fff;
+$color-bg-msg: #f8f8f8;
+$color-bg-active: #e4edfd;
+$color-bg-simple: #fbfbfb;
+$color-bg-additional: #efefef;
+$color-additional: #999;
+$color-border: #eaeaea;
+
+$color-status-text: #999;
+$color-status-media: #a9a9a9;
+$color-status-mine: #3369f3;
+
+$transition: 0.2s linear;
+
+@mixin scrollStyle {
+  overflow-y: scroll;
+  padding-right: 5px;
+  -webkit-overflow-scrolling: touch;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 3px;
+    background-color: transparent;
+  }
+
+  &:hover {
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba($color-active, 0.5);
+    }
+  }
+}

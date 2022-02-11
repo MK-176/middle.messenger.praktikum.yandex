@@ -1,0 +1,18 @@
+<div class="input-block input-block--{{modify}}"
+     data-input-block>
+    {{#if label}}
+        <div class="input-label"
+             data-input-label>{{label}}</div>
+    {{/if}}
+    <input type="{{type}}"
+           class="input input--{{modify}}"
+           value="{{value}}"
+           placeholder="{{placeholder}}"
+           data-input-element
+    />
+    {{#if err}}
+        <div class="message">
+            {{err}}
+        </div>
+    {{/if}}
+</div>
