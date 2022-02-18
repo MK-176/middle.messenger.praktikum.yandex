@@ -1,12 +1,13 @@
+import type {TArrayElement} from "../../Types/TArray";
 import setClass from '../../utils/setClass';
 
 const data = 'data-contact';
 
-const setActive = (arr, id) => {
-  let result = [];
+const setActive = (arr: TArrayElement, id: string) => {
+  let result: TArrayElement = [];
 
   if (arr.length) {
-    result = arr.map((contact) => {
+    result = arr.map((contact: HTMLElement) => {
       return setClass(
         contact,
         'active',
@@ -19,20 +20,18 @@ const setActive = (arr, id) => {
 };
 
 const contact = () => {
-  const contacts = Array.from(
+  const contacts: TArrayElement = Array.from(
     document.querySelectorAll(`[${data}]`),
   );
   if (contacts.length) {
-    contacts.forEach((item) => {
-      item.addEventListener('click', (ev) => {
-        const { target } = ev;
-
+    contacts.forEach((item: HTMLElement) => {
+      item.addEventListener('click', (ev: Event) => {
+        const target = ev.target as HTMLButtonElement;
         const isTarget = target.hasAttribute(data)
           || target.closest(`[${data}]`);
 
         if (isTarget && !target.classList.contains('active')) {
-          const id = item.getAttribute(data);
-          setActive(contacts, id);
+          setActive(contacts, (item.getAttribute(data) as string));
         }
       });
     });

@@ -1,5 +1,6 @@
+import type {TArray} from "../../Types/TArray";
 class Preloader {
-  preloaderArray = null;
+  preloaderArray: TArray | null = null;
 
   constructor () {
     this.preloaderArray = Array.from(
@@ -8,7 +9,7 @@ class Preloader {
   }
 
   removePreloader = () => {
-    this.preloaderArray?.map((preloader) => {
+    this.preloaderArray?.map((preloader: HTMLDivElement) => {
       if (preloader) {
         setTimeout(() => {
           preloader.remove();

@@ -1,4 +1,4 @@
-const setClass = (element, cls = 'active', condition = false) => {
+const setClass = (element: HTMLElement, cls: string = 'active', condition: boolean = false): HTMLElement => {
   if (condition) {
     element.classList.add(cls);
   } else {
