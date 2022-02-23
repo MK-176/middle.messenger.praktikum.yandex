@@ -1,4 +1,4 @@
-const get = (obj: any, path: string, defaultValue: any): object => {
+export const get = (obj: any, path: string, defaultValue: any): object => {
   const keys: Array<string> = path.split('.');
   let result: any = obj;
 
@@ -12,5 +12,3 @@ const get = (obj: any, path: string, defaultValue: any): object => {
 
   return result ?? defaultValue;
 };
-
-export default get;

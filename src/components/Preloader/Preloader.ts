@@ -1,4 +1,4 @@
-import type {TArray} from "../../Types/TArray";
+import type {TArray} from "../../Types";
 class Preloader {
   preloaderArray: TArray | null = null;
 

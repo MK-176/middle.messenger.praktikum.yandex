@@ -7,7 +7,7 @@
       "@parcel/transformer-sass"
     ],
     "*.hbs": [
-      "@anikin/parcel-transformer-handlebars"
+      "@anikin/parcel-transformer-handlebars-precompile"
     ]
   }
 }

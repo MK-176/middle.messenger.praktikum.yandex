@@ -9,17 +9,17 @@
     <div class="avatar__title">
         Михаил Ким
     </div>
+    {{#if canChange}}
+        <div hidden>
+            {{#extend 'updateModal' dataAttr='change-avatar' title='Загрузить файл' text='Поменять'}}
+                {{#content "modal-content"}}
+                    {{#extend "link" link='#' isHtml=true}}
+                        {{#content "text"}}
+                            Выбрать файл на<br />компьютере
+                        {{/content}}
+                    {{/extend}}
+                {{/content}}
+            {{/extend}}
+        </div>
+    {{/if}}
 </div>
-{{#if canChange}}
-    <div hidden>
-        {{#extend 'updateModal' dataAttr='change-avatar' title='Загрузить файл' text='Поменять'}}
-            {{#content "modal-content"}}
-                {{#extend "link" link='#' isHtml=true}}
-                    {{#content "text"}}
-                        Выбрать файл на<br />компьютере
-                    {{/content}}
-                {{/extend}}
-            {{/content}}
-        {{/extend}}
-    </div>
-{{/if}}

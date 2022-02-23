@@ -19,7 +19,7 @@ const setActive = (arr: TArrayElement, id: string) => {
   return result;
 };
 
-const contact = () => {
+export const contact = () => {
   const contacts: TArrayElement = Array.from(
     document.querySelectorAll(`[${data}]`),
   );
@@ -37,5 +37,3 @@ const contact = () => {
     });
   }
 };
-
-export default contact;
