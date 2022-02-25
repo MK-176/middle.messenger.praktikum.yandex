@@ -1,0 +1,13 @@
+<li class="chat-contact" data-contact="{{id}}">
+    <div class="chat-contact__avatar"></div>
+    <div class="chat-contact__content">
+        <div class="chat-contact__name">{{name}}</div>
+        <div class="chat-contact__message">{{message}}</div>
+    </div>
+    <div class="chat-contact__meta">
+        <div class="chat-contact__meta-time">{{time}}</div>
+        {{#if count}}
+            <div class="chat-contact__meta-count">{{count}}</div>
+        {{/if}}
+    </div>
+</li>

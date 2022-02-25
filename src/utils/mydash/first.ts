@@ -1,4 +1,4 @@
-const first = (arr) => {
+const first = (arr: unknown[]): unknown => {
   if (!Array.isArray(arr)) {
     return undefined;
   }

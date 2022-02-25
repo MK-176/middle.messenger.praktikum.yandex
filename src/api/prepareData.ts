@@ -1,4 +1,4 @@
-import type {TData} from "../Types/TData";
+import type {TData} from "../Types";
 
 const prepareData = (data: TData): string => {
   let strData: string = '';

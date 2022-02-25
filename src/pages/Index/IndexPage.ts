@@ -1,17 +1,15 @@
 import {Block} from '../../modules';
 import {TObject} from '../../Types';
-import template from './Page404.hbs';
-import Link from '../../components/Link';
+import template from './IndexPage.hbs';
+import {Sidebar} from '../../components/Sidebar/Sidebar';
 
-export class Page404 extends Block {
+export class IndexPage extends Block {
   constructor(props: TObject) {
     super(props);
   }
 
   initChildren() {
-    this.children.link = new Link({
-      text: 'Назад к чатам',
-    });
+    this.children.sidebar = new Sidebar({});
   }
 
   render(): any {

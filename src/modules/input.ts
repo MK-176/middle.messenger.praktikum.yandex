@@ -18,8 +18,8 @@ export const input = (main: HTMLDivElement | null) => {
     parent = main;
     main.querySelectorAll(
       `[${data.input}]`,
-    )?.forEach((input: HTMLInputElement) => {
-      input.hasAttribute(data.init) && input.removeAttribute(data.init);
+    )?.forEach((input: Node) => {
+      (input as HTMLInputElement).hasAttribute(data.init) && (input as HTMLInputElement).removeAttribute(data.init);
     });
   }
 

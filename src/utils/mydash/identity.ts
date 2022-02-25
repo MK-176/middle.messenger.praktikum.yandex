@@ -1,3 +1,3 @@
-const identity = (identity) => (identity);
+const identity = (identity: unknown): unknown => (identity);
 
 export default identity;

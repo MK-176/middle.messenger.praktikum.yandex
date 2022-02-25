@@ -12,7 +12,7 @@ export class Auth extends Block {
     super(props);
   }
 
-  protected initChildren() {
+  initChildren() {
     this.children.title = new Title({text: 'Авторизация'});
     this.children.input = [];
     authInputs.forEach((props: TObject) => {

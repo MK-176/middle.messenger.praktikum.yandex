@@ -12,7 +12,7 @@ export class Register extends Block {
     super(props);
   }
 
-  protected initChildren() {
+  initChildren() {
     this.children.title = new Title({text: 'Регистрация'});
     this.children.input = [];
     registerInputs.forEach((props: TObject) => {
