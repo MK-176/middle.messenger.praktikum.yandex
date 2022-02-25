@@ -20,9 +20,9 @@ title: Chat Page
                         <button type="button"
                                 class="button button--transparent button--config"></button>
                         <div class="list-item-modal chat__config-block">
-                            {{>listItem modify='add' text='Добавить пользователя' modal='add-user'}}
-                            {{>listItem modify='remove' text='Удалить пользователя' modal='remove-user'}}
-                            {{>listItem modify='remove' text='Удалить чат' modal='remove-chat'}}
+                            {{>listItem modify="add" text="Добавить пользователя" modal="add-user"}}
+                            {{>listItem modify="remove" text="Удалить пользователя" modal="remove-user"}}
+                            {{>listItem modify="remove" text="Удалить чат" modal="remove-chat"}}
                         </div>
                     </div>
                 </header>
@@ -34,13 +34,13 @@ title: Chat Page
                         <button type="button"
                                 class="button button--transparent button--add"></button>
                         <div class="list-item-modal chat__add-block">
-                            {{>listItem modify='media' text='Фото или Видео'}}
-                            {{>listItem modify='file' text='Файл'}}
-                            {{>listItem modify='location' text='Локация'}}
+                            {{>listItem modify="media" text="Фото или Видео"}}
+                            {{>listItem modify="file" text="Файл"}}
+                            {{>listItem modify="location" text="Локация"}}
                         </div>
                     </div>
                     <div class="chat__write">
-                        {{>input modify='text' type='text' placeholder='Сообщение'}}
+                        {{>input modify="text" type="text" placeholder="Сообщение"}}
                     </div>
                     <div class="chat__submit">
                         <button type="button"
@@ -48,24 +48,24 @@ title: Chat Page
                     </div>
                 </footer>
                 <div hidden>
-                    {{#extend 'updateModal' dataAttr='add-user' title='Добавить пользователя' text='Добавить'}}
+                    {{#extend "updateModal" dataAttr="add-user" title="Добавить пользователя" text="Добавить"}}
                         {{#content "modal-content"}}
-                            {{>input modify='stroke' type='text' label='Логин'}}
+                            {{>input modify="stroke" type="text" label="Логин"}}
                         {{/content}}
                     {{/extend}}
-                    {{#extend 'updateModal' dataAttr='remove-user' title='Удалить пользователя' text='Удалить'}}
+                    {{#extend "updateModal" dataAttr="remove-user" title="Удалить пользователя" text="Удалить"}}
                         {{#content "modal-content"}}
-                            {{>input modify='stroke' type='text' label='Логин'}}
+                            {{>input modify="stroke" type="text" label="Логин"}}
                         {{/content}}
                     {{/extend}}
                     <div class="update-modal" data-modal-block="remove-chat">
                         <div class="update-modal__title">Вы уверены, что хотите удалить этот чат</div>
                         <div class="update-modal__block">
                             <div class="button-block">
-                                {{>button text='Удалить'}}
+                                {{>button text="Удалить"}}
                             </div>
                             <div class="button-block">
-                                {{>link text='Отмена' link='../static/chat.hbs'}}
+                                {{>link text="Отмена" link="../static/chat.hbs"}}
                             </div>
                         </div>
                     </div>

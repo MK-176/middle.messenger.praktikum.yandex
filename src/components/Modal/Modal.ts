@@ -1,4 +1,6 @@
-import type {TArray} from "../../Types/TArray";
+import type {TArray} from '../../Types';
+import template from './Modal.hbs';
+
 type TObject<T = string | boolean | number | null | undefined | Function> = {
   [key: string]: T,
 };
@@ -7,13 +9,13 @@ const defaultData: TObject = {
   selector: '[data-modal]',
   src: 'data-modal',
   wrap: 'data-modal-wrap',
+  content: 'data-modal-content',
   hasCloseBtn: false,
   opened: null,
 };
 
-export default class Modal {
+export class Modal {
   mainData: TObject = {};
-  closeBtn: HTMLDivElement | null = null;
   modalBlock: HTMLDivElement | null = null;
 
   constructor(options: TObject = {}) {
@@ -44,7 +46,7 @@ export default class Modal {
   };
 
   #init = (modals: TArray) => {
-    modals.map((modal: HTMLDivElement) => {
+    modals.forEach((modal: HTMLDivElement) => {
       modal.setAttribute('data-modal-init', 'true');
       return this.#eventListeners(modal);
     });
@@ -78,6 +80,7 @@ export default class Modal {
 
         if (contentBlock) {
           const content: Node = contentBlock.cloneNode(true);
+
           (this.modalBlock as HTMLDivElement).appendChild(content);
           this.#reInit(block);
         }
@@ -94,38 +97,26 @@ export default class Modal {
     const {
       mainData: {
         wrap: wrapData,
-        hasCloseBtn,
+        content,
       },
     } = this;
-    const wrap: HTMLDivElement = document.createElement('div');
-    const block: HTMLDivElement = document.createElement('div');
-    this.modalBlock = document.createElement('div');
 
-    wrap.classList.add('modal');
-    wrap.setAttribute(wrapData as string, 'wrap');
-    block.classList.add('modal__block');
-    this.modalBlock.classList.add('modal__block-content');
+    const tmpl: HTMLTemplateElement = document.createElement('template');
+    tmpl.innerHTML = template();
+    const wrap = ((
+      tmpl.content.querySelector(`[${wrapData}]`) as Node
+    ).cloneNode(true) as HTMLDivElement);
+    tmpl.remove();
 
-    if (hasCloseBtn) {
-      this.closeBtn = document.createElement('div');
-      this.closeBtn.classList.add('modal__close');
-      this.#closeModal(this.closeBtn, wrap);
-    } else {
-      this.#closeModal(null, wrap);
-    }
-
-    block.appendChild(this.modalBlock);
-    if (hasCloseBtn) {
-      block.appendChild(this.closeBtn as HTMLDivElement);
-    }
-    wrap.appendChild(block);
+    this.modalBlock = (wrap.querySelector(`[${content}]`) as HTMLDivElement);
+    this.#closeModal(wrap);
 
     return wrap;
   };
 
   #reInit = (wrap: HTMLDivElement) => {
     const modals: TArray = Array.from(
-      wrap.querySelectorAll(this.mainData.selector as string)
+      wrap.querySelectorAll(this.mainData.selector as string),
     );
     const modalsArray: TArray = modals.map((modal) => {
       if (modal.hasAttribute('data-modal-init')) {
@@ -146,25 +137,17 @@ export default class Modal {
     body.appendChild(block);
   };
 
-  #closeModal = (button: HTMLElement | null, modal: HTMLDivElement) => {
-    const modalRemove = (): void => {
-      modal.remove();
-    };
-    if (button) {
-      button.addEventListener('click', modalRemove);
-    }
-    modal.addEventListener('click', (ev: Event) => {
+  #closeModal = (modal: HTMLDivElement) => {
+    modal.addEventListener('click', function removeModal(ev: Event) {
       if ((ev.target as HTMLElement).classList.contains('modal')) {
-        modalRemove();
+        modal.remove();
       }
     });
   };
 
-  #closeAllModals = (modals: TArray) => {
-    if (modals.length > 0) {
-      modals.forEach((modal: HTMLDivElement) => {
-        modal.remove();
-      });
-    }
+  #closeAllModals = (modals: TArray = []) => {
+    modals.forEach((modal: HTMLDivElement) => {
+      modal.remove();
+    });
   };
 }

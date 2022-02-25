@@ -32,7 +32,6 @@ export class Block implements IBlock {
   }
 
   _registerEvents(eventBus: TObject) {
-    console.log('_registerEvents');
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
@@ -44,12 +43,10 @@ export class Block implements IBlock {
   }
 
   _componentDidMount() {
-    console.log('_CDM');
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER, {...this.props});
     this.componentDidMount();
   }
 
-  // Может переопределять пользователь, необязательно трогать
   componentDidMount: TComponentDidMount = () => {
   };
 
@@ -58,7 +55,6 @@ export class Block implements IBlock {
   }
 
   _componentDidUpdate(oldProps: TObject, newProps: TObject) {
-    console.log('_CDU');
     let result: Function | boolean = false;
 
     if (!isEqual(oldProps, newProps)) {
@@ -72,12 +68,10 @@ export class Block implements IBlock {
     return typeof result === 'function' ? result() : result;
   }
 
-  // Может переопределять пользователь, необязательно трогать
   componentDidUpdate: TComponentDidUpdate = () => {
   };
 
   setProps: any = (nextProps: TObject) => {
-    console.log('setProps');
     if (!nextProps) {
       return false;
     }
@@ -113,7 +107,6 @@ export class Block implements IBlock {
   }
 
   _render() {
-    console.log('_render');
     const fragment = this.render();
     const newElement = fragment.firstElementChild;
 
@@ -126,18 +119,15 @@ export class Block implements IBlock {
     this._addEvents();
   }
 
-  // Может переопределять пользователь, необязательно трогать
   protected render(): DocumentFragment {
     return new DocumentFragment();
   }
 
   getContent = () => {
-    console.log('getContent');
     return this._element;
   };
 
   _makePropsProxy = (props: TObject): ProxyHandler<any> => {
-    console.log('_makePropsProxy');
     const self = this;
 
     return new Proxy(props as unknown as object, {
@@ -157,7 +147,6 @@ export class Block implements IBlock {
   };
 
   _removeEvents() {
-    console.log('_removeEvents');
     const events: Record<string, () => void> = (this.props as any).events;
 
     if (!events || !this._element) {
@@ -170,7 +159,6 @@ export class Block implements IBlock {
   }
 
   _addEvents() {
-    console.log('_addEvents');
     const events: Record<string, () => void> = (this.props as any).events;
 
     if (!events) {
@@ -182,11 +170,9 @@ export class Block implements IBlock {
     });
   }
 
-  _createDocumentElement = (tagName: string) => {
-    console.log('_createDocumentElement');
-    // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
-    return document.createElement(tagName);
-  };
+  _createDocumentElement = (tagName: string) => (
+    document.createElement(tagName)
+  );
 
   compile(template: (context: any) => string, context: any) {
     const fragment = this._createDocumentElement('template') as HTMLTemplateElement;

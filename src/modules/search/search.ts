@@ -6,21 +6,17 @@ const search = () => {
     document.querySelectorAll('[data-search]'),
   );
 
-  if (searchBlocks.length) {
-    searchBlocks.forEach((block: HTMLDivElement) => {
-      const input: HTMLInputElement | null = block.querySelector('[data-search-input]');
+  searchBlocks.forEach((block: HTMLDivElement) => {
+    const input: HTMLInputElement | null = block.querySelector('[data-search-input]');
 
-      if (input) {
-        input.addEventListener('focus', () => {
-          setClass(block, 'filled', true);
-        });
-        input.addEventListener('blur', (ev: Event) => {
-          setClass(block, 'filled', false);
-          setClass(block, 'focus', (ev.target as HTMLInputElement).value !== '');
-        });
-      }
+    input?.addEventListener('focus', () => {
+      setClass(block, 'filled', true);
     });
-  }
+    input?.addEventListener('blur', (ev: Event) => {
+      setClass(block, 'filled', false);
+      setClass(block, 'focus', (ev.target as HTMLInputElement).value !== '');
+    });
+  });
 };
 
 export default search;

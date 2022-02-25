@@ -6,9 +6,6 @@
     "*.{js,mjs,jsx,cjs,ts,tsx}": [
   	  "@parcel/transformer-js"
   	],
-    "*.scss": [
-      "@parcel/transformer-sass"
-    ],
     "*.hbs": [
       "@anikin/parcel-transformer-handlebars-precompile"
     ]

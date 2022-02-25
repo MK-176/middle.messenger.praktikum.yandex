@@ -1,4 +1,6 @@
 import {renderDOM} from './utils/renderDOM';
+import Modal from './components/Modal';
+import Preloader from './components/Preloader';
 
 document.addEventListener('DOMContentLoaded', async () => {
   const path: string = location.pathname;
@@ -35,4 +37,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (template) {
     renderDOM('.root', template);
   }
+  setTimeout(() => {
+    new Modal();
+  }, 2000);
+});
+
+window.addEventListener('load', () => {
+  new Preloader().removePreloader();
 });

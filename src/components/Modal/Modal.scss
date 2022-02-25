@@ -1,8 +1,6 @@
-@import './variables';
+@import '../../scss/variables';
 
-$modal: '.modal';
-
-#{$modal} {
+.modal {
   position: fixed;
   top: 0;
   right: 0;
@@ -23,7 +21,7 @@ $modal: '.modal';
     &-content {
       display: flex;
       flex-direction: column;
-      color: $color-bg-additional;
+      color: $color;
       min-height: 200px;
       max-height: 80vh;
       overflow-y: auto;

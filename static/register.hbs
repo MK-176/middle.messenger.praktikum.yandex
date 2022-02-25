@@ -12,7 +12,7 @@ uri: /register
     {{#content "main"}}
         {{#extend "mainForm"}}
             {{#content "title"}}
-                {{>title text='Регистрация'}}
+                {{>title text="Регистрация"}}
             {{/content}}
             {{#content "middle"}}
                 {{#each register}}
@@ -21,10 +21,10 @@ uri: /register
             {{/content}}
             {{#content "footer"}}
                 <div class="button-block">
-                    {{>button text='Зарегистрироваться'}}
+                    {{>button text="Зарегистрироваться"}}
                 </div>
                 <div class="button-block">
-                    {{>link text='Войти' link='./auth.hbs'}}
+                    {{>link text="Войти" link="./auth.hbs"}}
                 </div>
             {{/content}}
         {{/extend}}

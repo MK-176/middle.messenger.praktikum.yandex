@@ -12,7 +12,7 @@ uri: /auth
     {{#content "main"}}
         {{#extend "mainForm"}}
             {{#content "title"}}
-                {{>title text='Вход'}}
+                {{>title text="Вход"}}
             {{/content}}
             {{#content "middle"}}
                 {{#each auth}}
@@ -21,10 +21,10 @@ uri: /auth
             {{/content}}
             {{#content "footer"}}
                 <div class="button-block">
-                    {{>button text='Войти'}}
+                    {{>button text="Войти"}}
                 </div>
                 <div class="button-block">
-                    {{>link text='Нет аккаунта?' link='./register.hbs'}}
+                    {{>link text="Нет аккаунта?" link="./register.hbs"}}
                 </div>
             {{/content}}
         {{/extend}}

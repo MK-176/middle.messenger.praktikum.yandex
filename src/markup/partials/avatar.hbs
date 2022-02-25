@@ -11,9 +11,9 @@
     </div>
     {{#if canChange}}
         <div hidden>
-            {{#extend 'updateModal' dataAttr='change-avatar' title='Загрузить файл' text='Поменять'}}
+            {{#extend "updateModal" dataAttr="change-avatar" title="Загрузить файл" text="Поменять"}}
                 {{#content "modal-content"}}
-                    {{#extend "link" link='#' isHtml=true}}
+                    {{#extend "link" link="#" isHtml=true}}
                         {{#content "text"}}
                             Выбрать файл на<br />компьютере
                         {{/content}}

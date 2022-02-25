@@ -69,11 +69,9 @@ export class Http {
       );
       xhr.responseType = responseType as XMLHttpRequestResponseType;
 
-      if (Object.entries(headers).length) {
-        for (const name in headers) {
-          xhr.setRequestHeader(name, headers[name]);
-        }
-      }
+      Object.entries(headers).forEach(([key, value]) => {
+        xhr.setRequestHeader(key, value);
+      });
 
       xhr.onreadystatechange = () => {
         if (xhr.readyState === 4) {
@@ -97,11 +95,9 @@ export class Http {
         const formData = new FormData();
         const dataArr = Object.entries(data as Record<string, any>);
 
-        if (dataArr.length) {
-          dataArr.forEach(([key, value]): void => {
-            formData.append(key, value);
-          });
-        }
+        dataArr.forEach(([key, value]): void => {
+          formData.append(key, value);
+        });
 
         xhr.send(formData);
       }
