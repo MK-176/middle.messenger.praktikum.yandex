@@ -1,0 +1,59 @@
+@import './variables';
+
+.sidebar {
+  width: 330px;
+  min-height: 100vh;
+  padding: 0 5px 0 10px;
+  background-color: $color-bg-simple;
+  border-right: 1px solid $color-border;
+
+  &__title {
+    padding: 0 10px 15px 0;
+    height: 100px;
+  }
+
+  &__column {
+    padding: 15px 5px 15px 0;
+
+    &--right {
+      text-align: right;
+    }
+  }
+
+  &__link {
+    color: $color-additional;
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+    padding-right: 15px;
+
+    &::after {
+      content: '';
+      display: block;
+      width: 6px;
+      height: 6px;
+      border-top: 1px solid $color-additional;
+      border-right: 1px solid $color-additional;
+      transition: border-color $transition;
+      transform: rotate(45deg);
+      margin-top: -3px;
+      position: absolute;
+      top: 50%;
+      right: 0;
+    }
+
+    &:hover {
+      color: #333;
+
+      &::after {
+        border-color: #333;
+      }
+    }
+  }
+
+  &__content {
+    min-height: 600px;
+    height: calc(100vh - 100px);
+    @include scrollStyle();
+  }
+}

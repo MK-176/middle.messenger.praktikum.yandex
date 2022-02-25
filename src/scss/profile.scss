@@ -1,0 +1,62 @@
+@import './variables';
+
+$profileFormItem: '.profile-form-item';
+
+.profile {
+  &__block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding-left: 65px;
+  }
+
+  &__content {
+    width: 510px;
+    min-height: 510px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+.profile-list {
+  &:not(:last-child) {
+    margin-bottom: 60px;
+  }
+}
+
+#{$profileFormItem} {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  font-weight: $font-medium;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid $color-border;
+  }
+
+  &--html {
+    #{$profileFormItem} {
+      &__value {
+        flex-grow: 1;
+      }
+    }
+  }
+
+  &__label {
+    color: $color;
+    margin-right: 20px;
+  }
+
+  &__value {
+    color: $color-additional;
+    text-align: right;
+  }
+
+  &__block {
+    a {
+      font-size: 13px;
+    }
+  }
+}

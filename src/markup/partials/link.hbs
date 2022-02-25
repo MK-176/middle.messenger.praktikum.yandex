@@ -1,0 +1,7 @@
+<a href="{{link}}" class="link{{#if modify}} link--{{modify}}{{/if}}">
+    {{#if isHtml}}
+        {{#block "text"}}{{/block}}
+    {{else}}
+        {{text}}
+    {{/if}}
+</a>

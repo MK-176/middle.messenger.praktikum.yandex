@@ -1,0 +1,76 @@
+---
+meta:
+author: Michael Kim
+scripts:
+- ../src/index.js
+stylesheets:
+- ../src/scss/common.scss
+title: Chat Page
+---
+{{#extend "base"}}
+    {{#content "main"}}
+        {{#extend "chat-page" active=true}}
+            {{#content "chat"}}
+                <header class="chat__title">
+                    <div class="chat__user">
+                        <div class="chat__user-avatar"></div>
+                        <div class="chat__user-name">Bilbo Baggins</div>
+                    </div>
+                    <div class="chat__config">
+                        <button type="button"
+                                class="button button--transparent button--config"></button>
+                        <div class="list-item-modal chat__config-block">
+                            {{>listItem modify='add' text='Добавить пользователя' modal='add-user'}}
+                            {{>listItem modify='remove' text='Удалить пользователя' modal='remove-user'}}
+                            {{>listItem modify='remove' text='Удалить чат' modal='remove-chat'}}
+                        </div>
+                    </div>
+                </header>
+                <section class="chat__content">
+                    {{>messages}}
+                </section>
+                <footer class="chat__tools">
+                    <div class="chat__add">
+                        <button type="button"
+                                class="button button--transparent button--add"></button>
+                        <div class="list-item-modal chat__add-block">
+                            {{>listItem modify='media' text='Фото или Видео'}}
+                            {{>listItem modify='file' text='Файл'}}
+                            {{>listItem modify='location' text='Локация'}}
+                        </div>
+                    </div>
+                    <div class="chat__write">
+                        {{>input modify='text' type='text' placeholder='Сообщение'}}
+                    </div>
+                    <div class="chat__submit">
+                        <button type="button"
+                                class="button button--transparent button--submit"></button>
+                    </div>
+                </footer>
+                <div hidden>
+                    {{#extend 'updateModal' dataAttr='add-user' title='Добавить пользователя' text='Добавить'}}
+                        {{#content "modal-content"}}
+                            {{>input modify='stroke' type='text' label='Логин'}}
+                        {{/content}}
+                    {{/extend}}
+                    {{#extend 'updateModal' dataAttr='remove-user' title='Удалить пользователя' text='Удалить'}}
+                        {{#content "modal-content"}}
+                            {{>input modify='stroke' type='text' label='Логин'}}
+                        {{/content}}
+                    {{/extend}}
+                    <div class="update-modal" data-modal-block="remove-chat">
+                        <div class="update-modal__title">Вы уверены, что хотите удалить этот чат</div>
+                        <div class="update-modal__block">
+                            <div class="button-block">
+                                {{>button text='Удалить'}}
+                            </div>
+                            <div class="button-block">
+                                {{>link text='Отмена' link='../static/chat.hbs'}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {{/content}}
+        {{/extend}}
+    {{/content}}
+{{/extend}}

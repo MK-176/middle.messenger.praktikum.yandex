@@ -1,0 +1,44 @@
+[
+  {
+    "modify": "stroke",
+    "type": "text",
+    "label": "Почта",
+    "error": "Поле не заполнено"
+  },
+  {
+    "modify": "stroke",
+    "type": "text",
+    "label": "Логин",
+    "error": "Поле не заполнено"
+  },
+  {
+    "modify": "stroke",
+    "type": "text",
+    "label": "Имя",
+    "error": "Поле не заполнено"
+  },
+  {
+    "modify": "stroke",
+    "type": "text",
+    "label": "Фамилия",
+    "error": "Поле не заполнено"
+  },
+  {
+    "modify": "stroke",
+    "type": "tel",
+    "label": "Телефон",
+    "error": "Поле не заполнено"
+  },
+  {
+    "modify": "stroke",
+    "type": "password",
+    "label": "Пароль",
+    "error": ""
+  },
+  {
+    "modify": "stroke",
+    "type": "password",
+    "label": "Пароль (ещё раз)",
+    "error": "Пароли не совпадают"
+  }
+]

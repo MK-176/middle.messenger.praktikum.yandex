@@ -1,0 +1,84 @@
+@import './variables';
+
+$avatar: '.avatar';
+
+@mixin beforeAfter {
+  content: '';
+  display: block;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+#{$avatar} {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 60px;
+
+  &__image {
+    cursor: pointer;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+
+    &::before {
+      @include beforeAfter();
+      background: $color-bg-additional url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath fill='%23cdcdcd' fill-rule='evenodd' d='M36,2H4A2,2,0,0,0,2,4V25.27l12.65-3A12.56,12.56,0,0,1,17.38,22h5.24a12.56,12.56,0,0,1,2.73.31l12.65,3V4A2,2,0,0,0,36,2ZM4,0A4,4,0,0,0,0,4V36a4,4,0,0,0,4,4H36a4,4,0,0,0,4-4V4a4,4,0,0,0-4-4Zm6.91,14.55a3.64,3.64,0,1,0-3.64-3.64A3.64,3.64,0,0,0,10.91,14.55Z'/%3E%3C/svg%3E%0A") no-repeat center center;
+      z-index: -1;
+    }
+
+    &--can-change {
+      &::after {
+        @include beforeAfter();
+        background-color: transparent;
+        transition: background-color $transition;
+        z-index: 2;
+      }
+
+      &:hover {
+        #{$avatar} {
+          &__image {
+            &-cover {
+              opacity: 1;
+            }
+          }
+        }
+
+        &::after {
+          background-color: rgba(0, 0, 0, 0.5);
+        }
+      }
+    }
+
+    &-cover {
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity $transition;
+      text-align: center;
+      display: table-cell;
+      vertical-align: middle;
+      position: absolute;
+      z-index: 3;
+      top: 50%;
+      left: 50%;
+      color: $color-button;
+      transform: translateX(-50%) translateY(-50%);
+    }
+  }
+
+  &__title {
+    margin-top: 20px;
+    font-size: 16px;
+    color: $color;
+    text-align: center;
+    font-weight: $font-bold;
+  }
+}
+

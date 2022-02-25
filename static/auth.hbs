@@ -1,0 +1,32 @@
+---
+meta:
+  author: Michael Kim
+scripts:
+  - ../src/index.js
+stylesheets:
+  - ../src/scss/common.scss
+title: Index Page
+uri: /auth
+---
+{{#extend "base"}}
+    {{#content "main"}}
+        {{#extend "mainForm"}}
+            {{#content "title"}}
+                {{>title text='Вход'}}
+            {{/content}}
+            {{#content "middle"}}
+                {{#each auth}}
+                    {{>input modify=modify type=type label=label err=error}}
+                {{/each}}
+            {{/content}}
+            {{#content "footer"}}
+                <div class="button-block">
+                    {{>button text='Войти'}}
+                </div>
+                <div class="button-block">
+                    {{>link text='Нет аккаунта?' link='./register.hbs'}}
+                </div>
+            {{/content}}
+        {{/extend}}
+    {{/content}}
+{{/extend}}

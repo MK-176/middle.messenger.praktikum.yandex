@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+{{#block "head"}}
+    <head>
+        {{#block "meta"}}
+            {{>meta}}
+        {{/block}}
+        <title>{{title}}</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+        {{#block "styles"}}
+            {{#each stylesheets}}
+                <link href="{{this}}" rel="stylesheet" />
+            {{/each}}
+        {{/block}}
+    </head>
+{{/block}}
+{{#block "body"}}
+    <body>
+    <div class="preloader" data-preloader></div>
+    <div class="root">
+        <main class="main">
+            {{#block "main"}}{{/block}}
+        </main>
+    </div>
+    <script src="../src/index.js"></script>
+    </body>
+{{/block}}
+</html>
