@@ -31,19 +31,17 @@ const input = (main) => {
     blocks.map((block) => {
       const input = block.querySelector(`[${data.input}]`);
 
-      if (input) {
-        if (input.hasAttribute(data.init)) {
+        if (input?.hasAttribute(data.init)) {
           setClass(block, modify.filled, input.value.length > 0);
         }
 
-        input.addEventListener('focus', () => {
+        input?.addEventListener('focus', () => {
           setClass(block, modify.filled, true);
         });
-        input.addEventListener('blur', (ev) => {
+        input?.addEventListener('blur', (ev) => {
           setClass(block, modify.filled, false);
           setClass(block, modify.focus, ev.target.value !== '');
         });
-      }
     });
   }
 };
