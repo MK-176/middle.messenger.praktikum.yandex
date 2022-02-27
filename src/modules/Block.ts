@@ -136,8 +136,9 @@ export class Block implements IBlock {
         return typeof value === 'function' ? value.bind(target) : value;
       },
       set(target: Record<string, any>, prop: string, value: unknown): boolean {
+        const oldValue = {...target};
         target[prop] = value;
-        self.eventBus().emit(Block.EVENTS.FLOW_CDU, {...target}, target);
+        self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldValue, target);
         return true;
       },
       deleteProperty() {
