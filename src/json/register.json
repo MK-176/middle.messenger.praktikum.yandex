@@ -1,44 +1,72 @@
 [
   {
+    "inputType": "email",
     "modify": "stroke",
     "type": "text",
+    "name": "email",
     "label": "Почта",
-    "error": "Поле не заполнено"
+    "notice": "Поле не заполнено",
+    "error": false,
+    "value": ""
   },
   {
+    "inputType": "login",
     "modify": "stroke",
     "type": "text",
+    "name": "login",
     "label": "Логин",
-    "error": "Поле не заполнено"
+    "notice": "Поле не заполнено",
+    "error": false,
+    "value": ""
   },
   {
+    "inputType": "name",
     "modify": "stroke",
     "type": "text",
+    "name": "name",
     "label": "Имя",
-    "error": "Поле не заполнено"
+    "notice": "Поле не заполнено",
+    "error": false,
+    "value": ""
   },
   {
+    "inputType": "name",
     "modify": "stroke",
     "type": "text",
+    "name": "surname",
     "label": "Фамилия",
-    "error": "Поле не заполнено"
+    "notice": "Поле не заполнено",
+    "error": false,
+    "value": ""
   },
   {
+    "inputType": "phone",
     "modify": "stroke",
     "type": "tel",
+    "name": "phone",
     "label": "Телефон",
-    "error": "Поле не заполнено"
+    "notice": "Поле не заполнено",
+    "error": false,
+    "value": ""
   },
   {
+    "inputType": "password",
     "modify": "stroke",
     "type": "password",
+    "name": "password",
     "label": "Пароль",
-    "error": ""
+    "notice": "",
+    "error": false,
+    "value": ""
   },
   {
+    "inputType": "password",
     "modify": "stroke",
     "type": "password",
+    "name": "repeat-password",
     "label": "Пароль (ещё раз)",
-    "error": "Пароли не совпадают"
+    "notice": "Пароли не совпадают",
+    "error": false,
+    "value": ""
   }
 ]

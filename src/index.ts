@@ -1,6 +1,7 @@
 import {renderDOM} from './utils/renderDOM';
 import Modal from './components/Modal';
 import Preloader from './components/Preloader';
+import {submitForm} from './utils/submitForm';
 
 document.addEventListener('DOMContentLoaded', async () => {
   const path: string = location.pathname;
@@ -23,8 +24,46 @@ document.addEventListener('DOMContentLoaded', async () => {
       props = {};
       break;
     }
+    case '/chat': {
+      Page = await import('./pages/Chat');
+      props = {
+        date: '19 июля',
+      };
+      break;
+    }
+    case '/change-data': {
+      Page = await import('./pages/ChangeData');
+      props = {
+        link: '/profile',
+        avatarCanChange: true,
+      };
+      break;
+    }
+    case '/change-password': {
+      Page = await import('./pages/ChangePassword');
+      props = {
+        link: '/profile',
+        avatarCanChange: false,
+      };
+      break;
+    }
+    case '/profile': {
+      Page = await import('./pages/Profile');
+      props = {
+        link: '/',
+      };
+      break;
+    }
+    case '/500': {
+      Page = await import('./pages/PageError');
+      props = {
+        title: '500',
+        subtitle: 'Мы уже фиксим',
+      };
+      break;
+    }
     default: {
-      Page = await import('./pages/Page404');
+      Page = await import('./pages/PageError');
       props = {
         title: '404',
         subtitle: 'Не туда попали',
@@ -37,9 +76,12 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (template) {
     renderDOM('.root', template);
   }
-  setTimeout(() => {
-    new Modal();
-  }, 2000);
+
+  new Modal();
+
+  document.querySelectorAll('[data-form]').forEach((form) => {
+    form.addEventListener('submit', submitForm);
+  });
 });
 
 window.addEventListener('load', () => {

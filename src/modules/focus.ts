@@ -13,11 +13,13 @@ export const focusIn = (ev: Event, callback: Function | null = null): void => {
   if (target.nodeName.toLowerCase() === 'input') {
     if (target.hasAttribute(data.type)) {
       const block = target.closest(`[${data.block}]`) as HTMLDivElement;
+      const type = target.getAttribute(data.type);
       const {value} = target;
+
       setClass(block, 'filled', true);
 
       if (typeof callback === 'function') {
-        callback(validation(target.getAttribute(data.type) as ValidationType, value), value);
+        callback(validation(type as ValidationType, value), value);
       }
     }
   }
@@ -28,12 +30,13 @@ export const focusOut = (ev: Event, callback: Function | null = null): void => {
 
   if (target.nodeName.toLowerCase() === 'input' && target.hasAttribute(data.type)) {
     const block = target.closest(`[${data.block}]`) as HTMLDivElement;
+    const type = target.getAttribute(data.type);
     const {value} = target;
     setClass(block, 'filled', false);
     setClass(block, 'focus', target.value !== '');
 
     if (typeof callback === 'function') {
-      callback(validation(target.getAttribute(data.type) as ValidationType, value), value);
+      callback(validation(type as ValidationType, value), value);
     }
   }
 };

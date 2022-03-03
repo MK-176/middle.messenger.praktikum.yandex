@@ -1,7 +1,8 @@
 import {Block} from '../../modules';
 import {TObject} from '../../Types';
 import template from './IndexPage.hbs';
-import {Sidebar} from '../../components/Sidebar/Sidebar';
+import Sidebar from '../../components/Sidebar';
+
 
 export class IndexPage extends Block {
   constructor(props: TObject) {

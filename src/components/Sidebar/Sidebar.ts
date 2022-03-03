@@ -5,6 +5,7 @@ import contacts from '../../json/contacts.json';
 import Search from '../Search';
 import ChatContact from '../ChatContact';
 
+
 export class Sidebar extends Block {
   constructor(props: TObject) {
     super(props);

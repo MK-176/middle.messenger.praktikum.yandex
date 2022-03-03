@@ -1,4 +1,4 @@
-<div class="input-block input-block--{{modify}}"
+<div class="input-block input-block--{{modify}} {{#if filled}}filled{{/if}} {{#if error}}error{{/if}}"
      data-input-block>
     {{#if label}}
         <div class="input-label"
@@ -7,12 +7,9 @@
     <input type="{{type}}"
            class="input input--{{modify}}"
            value="{{value}}"
+           name="{{name}}"
            placeholder="{{placeholder}}"
            data-input-type="{{inputType}}"
     />
-    {{#if err}}
-        <div class="notice">
-            {{err}}
-        </div>
-    {{/if}}
+    {{{notice}}}
 </div>

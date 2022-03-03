@@ -1,7 +1,12 @@
 import {Block} from '../modules';
 
-export function renderDOM(rootSelector: string, component: Block) {
-  const root = document.querySelector(rootSelector);
+export function renderDOM(rootSelector: string | HTMLElement, component: Block) {
+  let root;
+  if (typeof rootSelector === 'string') {
+    root = document.querySelector(rootSelector as string);
+  } else {
+    root = rootSelector;
+  }
 
   if (!root) {
     throw new Error('Root not found');
@@ -10,5 +15,5 @@ export function renderDOM(rootSelector: string, component: Block) {
   component.dispatchComponentDidMount();
 
   root.innerHTML = '';
-  root.append(component.getContent()!);
+  root.replaceWith(component.getContent()!);
 }

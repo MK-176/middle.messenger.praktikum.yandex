@@ -3,7 +3,8 @@ import {TObject} from '../../Types';
 import template from './Page404.hbs';
 import Link from '../../components/Link';
 
-export class Page404 extends Block {
+
+export class PageError extends Block {
   constructor(props: TObject) {
     super(props);
   }

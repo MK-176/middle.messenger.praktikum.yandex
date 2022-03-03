@@ -1,0 +1,12 @@
+<div class="profile-form-item{{#if isHtml}} profile-form-item--html{{/if}}">
+    {{#if label}}
+        <div class="profile-form-item__label">
+            {{label}}
+        </div>
+    {{/if}}
+    {{#if value}}
+        <div class="profile-form-item__value">{{value}}</div>
+    {{else}}
+        <div class="profile-form-item__value">{{{input}}}</div>
+    {{/if}}
+</div>

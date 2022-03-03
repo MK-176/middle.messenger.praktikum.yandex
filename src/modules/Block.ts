@@ -2,52 +2,52 @@ import {TComponentDidMount, TComponentDidUpdate, TObject} from '../Types';
 import {nanoid} from 'nanoid';
 import {EventBus} from '../modules';
 import {isEqual} from '../utils/mydash';
-import {IBlock} from '../Interfaces';
+import {renderDOM} from '../utils/renderDOM';
 
-export class Block implements IBlock {
-  static EVENTS: TObject = {
-    INIT: 'init',
-    FLOW_CDM: 'flow:component-did-mount',
-    FLOW_CDU: 'flow:component-did-update',
-    FLOW_RENDER: 'flow:render',
-  };
-
+export class Block {
   public id = nanoid(6);
   private _element: HTMLElement | null = null;
   private eventBus: () => (EventBus);
   protected props: any;
   protected children: Record<string, Block | Block[]> = {};
+  private EVENTS: TObject = {
+    INIT: `init-${this.id}`,
+    FLOW_CDM: `flow-${this.id}:component-did-mount`,
+    FLOW_CDU: `flow-${this.id}:component-did-update`,
+    FLOW_RENDER: `flow-${this.id}:render`,
+  };
 
   constructor(propsAndChildren: TObject) {
     const eventBus = new EventBus;
     const {props, children} = this.getChildren(propsAndChildren);
 
     this.children = children;
-    this.initChildren();
     this.props = this._makePropsProxy(props);
+    this.initChildren();
+
     this.eventBus = () => (eventBus);
     this._registerEvents(eventBus);
 
-    eventBus.emit(Block.EVENTS.INIT);
+    eventBus.emit(this.EVENTS.INIT);
   }
 
   _registerEvents(eventBus: TObject) {
-    eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
-    eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
-    eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
-    eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
+    eventBus.on(this.EVENTS.INIT, this.init.bind(this));
+    eventBus.on(this.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
+    eventBus.on(this.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
+    eventBus.on(this.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
   init() {
-    this.eventBus().emit(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
+    this.eventBus().emit(this.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
   }
 
   _componentDidMount() {
-    this.eventBus().emit(Block.EVENTS.FLOW_RENDER, {...this.props});
+    this.eventBus().emit(this.EVENTS.FLOW_RENDER, {...this.props});
     this.componentDidMount();
   }
 
-  componentDidMount: TComponentDidMount = () => {
+  protected componentDidMount: TComponentDidMount = () => {
   };
 
   dispatchComponentDidMount() {
@@ -56,19 +56,23 @@ export class Block implements IBlock {
 
   _componentDidUpdate(oldProps: TObject, newProps: TObject) {
     let result: Function | boolean = false;
+    const oldElement = this.element;
 
     if (!isEqual(oldProps, newProps)) {
       result = (): boolean => {
-        this.eventBus().emit(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
+        this.eventBus().emit(this.EVENTS.FLOW_RENDER, {...this.props});
         return true;
       };
     }
 
     this.componentDidUpdate(oldProps, newProps);
+    if (!isEqual(oldProps, newProps)) {
+      renderDOM(oldElement as HTMLElement, this);
+    }
     return typeof result === 'function' ? result() : result;
   }
 
-  componentDidUpdate: TComponentDidUpdate = () => {
+  protected componentDidUpdate: TComponentDidUpdate = () => {
   };
 
   setProps: any = (nextProps: TObject) => {
@@ -83,8 +87,8 @@ export class Block implements IBlock {
     const children: any = {};
     const props: any = {};
 
-    const addPropsAndChildren = (Object: Array<[string, any]>) => {
-      Object.map(([key, value]) => {
+    const addPropsAndChildren = (obj: Array<[string, any]>) => {
+      obj.forEach(([key, value]) => {
         if (value instanceof Block) {
           children[key] = value;
         } else if (Array.isArray(value)) {
@@ -93,7 +97,7 @@ export class Block implements IBlock {
           props[key] = value;
         }
       });
-    }
+    };
     addPropsAndChildren(Object.entries(propsAndChildren));
 
     return {props, children};
@@ -104,6 +108,10 @@ export class Block implements IBlock {
   }
 
   protected initChildren() {
+  }
+
+  dispatchInitChildren() {
+    this.initChildren();
   }
 
   _render() {
@@ -138,7 +146,7 @@ export class Block implements IBlock {
       set(target: Record<string, any>, prop: string, value: unknown): boolean {
         const oldValue = {...target};
         target[prop] = value;
-        self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldValue, target);
+        self.eventBus().emit(self.EVENTS.FLOW_CDU, oldValue, target);
         return true;
       },
       deleteProperty() {
@@ -178,7 +186,7 @@ export class Block implements IBlock {
   compile(template: (context: any) => string, context: any) {
     const fragment = this._createDocumentElement('template') as HTMLTemplateElement;
     const divGetContent = (arr: Array<[any]>) => {
-      arr.map((child) => {
+      arr.forEach((child) => {
         if (Array.isArray(child)) {
           divGetContent(child);
         } else {
@@ -188,7 +196,7 @@ export class Block implements IBlock {
           }
           stub.replaceWith((child as Block).getContent()!);
         }
-      })
+      });
     };
 
     Object.entries(this.children).map(([key, child]) => {

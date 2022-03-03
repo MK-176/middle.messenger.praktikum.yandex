@@ -1,0 +1,29 @@
+<div class="avatar">
+    <div class="avatar__image{{#if canChange}} avatar__image--can-change{{/if}}"{{#if canChange}} data-modal="change-avatar"{{/if}}>
+        {{#if canChange}}
+            <div class="avatar__image-cover">
+                Поменять аватар
+            </div>
+        {{/if}}
+    </div>
+    <div class="avatar__title">
+        Михаил Ким
+    </div>
+    {{#if canChange}}
+        <div hidden>
+            <div class="update-modal"
+                 data-modal-block="change-avatar"
+            >
+                <div class="update-modal__title">
+                    Загрузить файл
+                </div>
+                <div class="update-modal__block">
+                    {{{link}}}
+                </div>
+                <div class="update-modal__footer">
+                    {{{button}}}
+                </div>
+            </div>
+        </div>
+    {{/if}}
+</div>
