@@ -9,13 +9,13 @@ export const submitForm = (ev: Event) => {
 
   if (formData.get('old-password')) {
     if (formData.get('password') === formData.get('old-password')) {
-      throw new Error('Новый пароль должен отличаться от старого.');
+      console.log('Новый пароль должен отличаться от старого.');
     }
   }
 
   if (formData.get('new-password')) {
     if (formData.get('password') !== formData.get('new-password')) {
-      throw new Error('Пароль введенный при повторе не совпадают.');
+      console.log('Пароль не совпадают.');
     }
   }
 
