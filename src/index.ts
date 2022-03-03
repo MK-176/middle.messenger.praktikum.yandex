@@ -14,47 +14,47 @@ document.addEventListener('DOMContentLoaded', async () => {
       props = {};
       break;
     }
-    case '/auth.html': {
+    case '/auth-page.html': {
       Page = await import('./pages/Auth');
       props = {};
       break;
     }
-    case '/register.html': {
+    case '/register-page.html': {
       Page = await import('./pages/Register');
       props = {};
       break;
     }
-    case '/chat.html': {
+    case '/chat-page.html': {
       Page = await import('./pages/Chat');
       props = {
         date: '19 июля',
       };
       break;
     }
-    case '/change-data.html': {
+    case '/change-data-page.html': {
       Page = await import('./pages/ChangeData');
       props = {
-        link: '/profile.html',
+        link: '/profile-page.html',
         avatarCanChange: true,
       };
       break;
     }
-    case '/change-password.html': {
+    case '/change-password-page.html': {
       Page = await import('./pages/ChangePassword');
       props = {
-        link: '/profile.html',
+        link: '/profile-page.html',
         avatarCanChange: false,
       };
       break;
     }
-    case '/profile.html': {
+    case '/profile-page.html': {
       Page = await import('./pages/Profile');
       props = {
         link: '/',
       };
       break;
     }
-    case '/500.html': {
+    case '/500-page.html': {
       Page = await import('./pages/PageError');
       props = {
         title: '500',

@@ -8,7 +8,7 @@ import ChatContact from '../ChatContact';
 
 export class Sidebar extends Block {
   constructor(props: TObject) {
-    super(props);
+    super({...props, link: './profile-page.html'});
   }
 
   initChildren() {

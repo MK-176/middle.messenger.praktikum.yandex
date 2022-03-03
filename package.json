@@ -8,13 +8,15 @@
     "not dead"
   ],
   "scripts": {
-    "build": "rm -rf build/ .cache/ .parcel-cache/ && parcel build static/*.html --dist-dir ./build",
+    "serve": "rm -rf build/ .cache/ .parcel-cache/ && parcel static/*.hbs --port=3000 --dist-dir ./build",
+    "build": "rm -rf build/ .cache/ .parcel-cache/ && parcel build static/*.hbs --dist-dir ./build",
     "start": "npm run build && node server.js"
   },
   "keywords": [],
   "author": "Michael Kim",
   "license": "ISC",
   "devDependencies": {
+    "@anikin/parcel-transformer-handlebars": "^1.0.9",
     "@anikin/parcel-transformer-handlebars-precompile": "^1.0.1",
     "@babel/core": "^7.17.5",
     "@babel/plugin-proposal-class-properties": "^7.16.7",
