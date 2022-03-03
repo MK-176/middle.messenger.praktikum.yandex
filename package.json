@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "build": "rm -rf build/ .cache/ .parcel-cache/ && parcel build index.html --dist-dir ./build",
-    "start": "npm run build && node server.js"
+    "start": "npm run build"
   },
   "keywords": [],
   "author": "Michael Kim",
