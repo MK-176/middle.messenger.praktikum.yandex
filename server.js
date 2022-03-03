@@ -4,7 +4,7 @@ const PORT = 3000;
 const build = `${__dirname}/build`
 
 function serverIndex(req, res) {
-  return res.sendfile(`${build}/index.html`);
+  return res.sendFile(`${build}/index.html`);
 }
 
 app.use(express.static(build));
