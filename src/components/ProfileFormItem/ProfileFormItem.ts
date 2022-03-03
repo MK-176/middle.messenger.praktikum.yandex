@@ -10,12 +10,13 @@ export class ProfileFormItem extends Block {
   }
 
   initChildren() {
-    if (this.props.type) {
-      this.children.input = new Input({
-        type: this.props.type,
-        value: this.props.value,
-      });
-    }
+    this.children.input = new Input({
+      ...this.props,
+      type: this.props.type,
+      value: this.props.value,
+      modify: 'border-none',
+      label: '',
+    });
   }
 
   render(): DocumentFragment {

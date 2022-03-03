@@ -16,7 +16,7 @@ export class Avatar extends Block {
     });
     this.children.link = new Link({
       link: '#',
-      text: 'Выбрать файл на<br />компьютере',
+      text: 'Выбрать файл на компьютере',
     });
   }
 
