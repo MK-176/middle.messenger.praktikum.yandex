@@ -8,7 +8,6 @@
     "not dead"
   ],
   "scripts": {
-    "serve": "rm -rf build/ .cache/ .parcel-cache/ && parcel index.html --port=3000 --dist-dir ./build",
     "build": "rm -rf build/ .cache/ .parcel-cache/ && parcel build static/*.html --dist-dir ./build",
     "start": "npm run build && node server.js"
   },
