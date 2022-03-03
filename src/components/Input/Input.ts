@@ -8,7 +8,7 @@ const noticeObject = {
   notice: 'Не верно заполнено!',
 };
 
-export default class Input extends Block {
+export class Input extends Block {
   constructor(props: TObject) {
     super({
       events: {
