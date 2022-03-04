@@ -3,6 +3,7 @@
 
 ### PULL REQUESTS
 - [Sprint 1 #1](https://github.com/MK-176/middle.messenger.praktikum.yandex/pull/1)
+- [Sprint 2](https://github.com/MK-176/middle.messenger.praktikum.yandex/pull/2)
 
 ## Sprint 1
 [Это прототип мессенджера в Figma](https://www.figma.com/file/HBucROmcriLA8AMnyJnmvI/Messenger?node-id=0%3A1)
