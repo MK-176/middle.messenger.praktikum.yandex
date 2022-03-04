@@ -5,6 +5,7 @@
 - [Sprint 1 #1](https://github.com/MK-176/middle.messenger.praktikum.yandex/pull/1)
 
 ## Sprint 1
+Реализовал верстку проекта используя Handlebars + добавил небольшую заготовку для компонентов.
 [Это прототип мессенджера в Figma](https://www.figma.com/file/HBucROmcriLA8AMnyJnmvI/Messenger?node-id=0%3A1)
 
 ###### Команды для запуска
@@ -27,6 +28,7 @@ npm run start
 
 
 ## Sprint 2
+Переделал способ рендера страниц, сделал разбивку файлов и перевел все на компоненты. Добавил класс для работы с Api.
 
 ###### Команды для запуска
 ```
