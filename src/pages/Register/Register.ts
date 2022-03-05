@@ -29,7 +29,10 @@ export class Register extends Block {
         click: submitForm,
       },
     });
-    this.children.link = new Link({text: 'Войти'});
+    this.children.link = new Link({
+      text: 'Войти',
+      link: '/auth-page.html',
+    });
   };
 
   protected render(): any {

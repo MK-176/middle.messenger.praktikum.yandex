@@ -31,6 +31,7 @@ export class Auth extends Block {
     });
     this.children.link = new Link({
       text: 'Нет аккаунта?',
+      link: '/register-page.html',
     });
   }
 
