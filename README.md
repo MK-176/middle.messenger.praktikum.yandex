@@ -39,12 +39,12 @@ npm run start
 Добавил команду **npm run serve** эта команда запустит режим разработки с использованием Parcel
 
 ###### Список страниц с ссылкой на Netlify
-- [Список контактов](https://6221d7257aff940007203567--cocky-shannon-993c10.netlify.app/index.html)
-- [Список контактов и чат](https://6221d7257aff940007203567--cocky-shannon-993c10.netlify.app/chat-page.html)
-- [Страница авторизации](https://6221d7257aff940007203567--cocky-shannon-993c10.netlify.app/auth-page.html)
-- [Страница регистрации](https://6221d7257aff940007203567--cocky-shannon-993c10.netlify.app/register-page.html)
-- [Страница изменения данных пользователя](https://6221d7257aff940007203567--cocky-shannon-993c10.netlify.app/change-data-page.html)
-- [Страница изменения пароля пользователя](https://6221d7257aff940007203567--cocky-shannon-993c10.netlify.app/change-password-page.html)
-- [Страница с данными пользователя](https://6221d7257aff940007203567--cocky-shannon-993c10.netlify.app/profile-page.html)
-- [Ошибка 404](https://6221d7257aff940007203567--cocky-shannon-993c10.netlify.app/404-page.html)
-- [Ошибка 500](https://6221d7257aff940007203567--cocky-shannon-993c10.netlify.app/500-page.html)
+- [Список контактов](https://62237fef33f9112573bbc4c2--cocky-shannon-993c10.netlify.app/index.html)
+- [Список контактов и чат](https://62237fef33f9112573bbc4c2--cocky-shannon-993c10.netlify.app/chat-page.html)
+- [Страница авторизации](https://62237fef33f9112573bbc4c2--cocky-shannon-993c10.netlify.app/auth-page.html)
+- [Страница регистрации](https://62237fef33f9112573bbc4c2--cocky-shannon-993c10.netlify.app/register-page.html)
+- [Страница изменения данных пользователя](https://62237fef33f9112573bbc4c2--cocky-shannon-993c10.netlify.app/change-data-page.html)
+- [Страница изменения пароля пользователя](https://62237fef33f9112573bbc4c2--cocky-shannon-993c10.netlify.app/change-password-page.html)
+- [Страница с данными пользователя](https://62237fef33f9112573bbc4c2--cocky-shannon-993c10.netlify.app/profile-page.html)
+- [Ошибка 404](https://62237fef33f9112573bbc4c2--cocky-shannon-993c10.netlify.app/404-page.html)
+- [Ошибка 500](https://62237fef33f9112573bbc4c2--cocky-shannon-993c10.netlify.app/500-page.html)
