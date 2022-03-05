@@ -200,7 +200,12 @@ export abstract class Block {
           if (!stub) {
             return;
           }
-          stub.replaceWith((child as Block).getContent()!);
+          const content = (child as Block).getContent() as HTMLDivElement;
+          if (content.classList.contains('media')) {
+            const contentBlock = (content.querySelector('[data-is-html]') as HTMLDivElement);
+            contentBlock.innerHTML = contentBlock.innerText;
+          }
+          stub.replaceWith(content!);
         }
       });
     };
