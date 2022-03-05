@@ -13,7 +13,7 @@ export class IndexPage extends Block {
     this.children.sidebar = new Sidebar({});
   }
 
-  protected render(): any {
+  protected render(): DocumentFragment {
     return this.compile(template, {...this.props});
   }
 }

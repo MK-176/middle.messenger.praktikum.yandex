@@ -15,7 +15,7 @@ export class PageError extends Block {
     });
   }
 
-  protected render(): any {
+  protected render(): DocumentFragment {
     return this.compile(template, {...this.props});
   }
 }

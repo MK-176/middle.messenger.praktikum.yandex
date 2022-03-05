@@ -7,7 +7,7 @@ export class Button extends Block {
     super(props);
   }
 
-  protected render(): any {
+  protected render(): DocumentFragment {
     return this.compile(ButtonTmpl, {...this.props});
   }
 }

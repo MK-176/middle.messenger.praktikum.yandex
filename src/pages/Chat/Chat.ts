@@ -21,7 +21,7 @@ export class Chat extends Block {
     this.children.footer = new Footer({});
   }
 
-  protected render(): any {
+  protected render(): DocumentFragment {
     return this.compile(template, {...this.props});
   }
 }

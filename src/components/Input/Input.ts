@@ -64,7 +64,7 @@ export class Input extends Block {
     });
   }
 
-  protected render(): any {
+  protected render(): DocumentFragment {
     return this.compile(InputTemplate, {...this.props});
   }
 }
