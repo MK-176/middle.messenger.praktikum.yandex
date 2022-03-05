@@ -1,16 +1,15 @@
 import {Block} from '../../modules';
-import {TObject} from '../../Types';
+import type {TData} from '../../Types';
 import template from './UpdateModal.hbs';
 import Input from '../Input';
 import Button from '../Button';
 
-
 export class UpdateModal extends Block {
-  constructor(props: TObject) {
+  constructor(props: TData) {
     super(props);
   }
 
-  initChildren() {
+  protected initChildren(): void {
     this.children.input = new Input({
       modify: 'stroke',
       type: 'text',
@@ -22,7 +21,7 @@ export class UpdateModal extends Block {
     });
   }
 
-  render(): DocumentFragment {
+  protected render(): any {
     return this.compile(template, {...this.props});
   }
 }

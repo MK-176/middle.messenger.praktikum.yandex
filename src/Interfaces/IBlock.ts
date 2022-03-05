@@ -1,4 +1,4 @@
-import {TComponentDidMount, TComponentDidUpdate} from '../Types';
+import type {TComponentDidMount, TComponentDidUpdate} from '../Types';
 
 export interface IBlock {
   init: () => void,

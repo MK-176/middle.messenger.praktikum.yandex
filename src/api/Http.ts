@@ -1,4 +1,6 @@
-enum METHOD {
+import {queryStringify} from '../utils';
+
+enum Method {
   GET = 'GET',
   POST = 'POST',
   PUT = 'PUT',
@@ -16,7 +18,7 @@ export class Http {
   get = (url: string, options: TOptions = {}): Promise<XMLHttpRequest> => (
     this.request(
       url,
-      {...options, method: METHOD.GET},
+      {...options, method: Method.GET},
       options.timeout,
     )
   );
@@ -24,7 +26,7 @@ export class Http {
   post = (url: string, options: TOptions = {}): Promise<XMLHttpRequest> => (
     this.request(
       url,
-      {...options, method: METHOD.POST},
+      {...options, method: Method.POST},
       options.timeout,
     )
   );
@@ -32,7 +34,7 @@ export class Http {
   put = (url: string, options: TOptions = {}): Promise<XMLHttpRequest> => (
     this.request(
       url,
-      {...options, method: METHOD.PUT},
+      {...options, method: Method.PUT},
       options.timeout,
     )
   );
@@ -40,17 +42,17 @@ export class Http {
   delete = (url: string, options: TOptions = {}): Promise<XMLHttpRequest> => (
     this.request(
       url,
-      {...options, method: METHOD.DELETE},
+      {...options, method: Method.DELETE},
       options.timeout,
     )
   );
 
   request = (url: string, {
     headers = {} as Record<string, any>,
-    method = METHOD.GET,
+    method = Method.GET,
     data = null as Record<string, any> | {} | null,
     responseType = 'json',
-  }, timeout: number = 5000): Promise<XMLHttpRequest> => (
+  }: Record<string, any>, timeout: number = 5000): Promise<XMLHttpRequest> => (
     new Promise((resolve, reject) => {
       if (!method) {
         reject('No method');
@@ -58,18 +60,18 @@ export class Http {
       }
 
       const xhr = new XMLHttpRequest();
-      const isGet = method === METHOD.GET;
+      const isGet = method === Method.GET;
 
       xhr.open(
         method,
         (isGet && data)
-          ? `${url}?${this._queryStringify(data)}`
+          ? `${url}?${queryStringify(data)}`
           : url,
       );
       xhr.responseType = responseType as XMLHttpRequestResponseType;
 
       Object.entries(headers).forEach(([key, value]) => {
-        xhr.setRequestHeader(key, value);
+        xhr.setRequestHeader(key, (value as string));
       });
 
       xhr.onreadystatechange = () => {
@@ -102,15 +104,4 @@ export class Http {
       }
     })
   );
-
-  _queryStringify = (data: any): string => {
-    if (typeof data !== 'object') {
-      throw new Error('Data must be an object');
-    }
-
-    const keys = Object.keys(data);
-    return keys.reduce((result, key, index) => {
-      return `${result}${key}=${data[key]}${index < keys.length - 1 ? '&' : ''}`;
-    }, '');
-  };
 }

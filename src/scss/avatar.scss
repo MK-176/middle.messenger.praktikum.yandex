@@ -21,7 +21,6 @@ $avatar: '.avatar';
   margin-bottom: 60px;
 
   &__image {
-    cursor: pointer;
     width: 130px;
     height: 130px;
     border-radius: 50%;
@@ -35,6 +34,8 @@ $avatar: '.avatar';
     }
 
     &--can-change {
+      cursor: pointer;
+
       &::after {
         @include beforeAfter();
         background-color: transparent;

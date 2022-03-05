@@ -1,15 +1,14 @@
 import {Block} from '../../modules';
-import {TObject} from '../../Types';
+import type {TData} from '../../Types';
 import Input from '../Input';
 import template from './ProfileFormItem.hbs';
 
-
 export class ProfileFormItem extends Block {
-  constructor(props: TObject) {
+  constructor(props: TData) {
     super(props);
   }
 
-  initChildren() {
+  protected initChildren(): void {
     this.children.input = new Input({
       ...this.props,
       type: this.props.type,
@@ -19,7 +18,7 @@ export class ProfileFormItem extends Block {
     });
   }
 
-  render(): DocumentFragment {
+  protected render(): any {
     return this.compile(template, {...this.props});
   }
 }

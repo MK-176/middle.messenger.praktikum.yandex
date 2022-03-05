@@ -1,15 +1,6 @@
-import first from './first';
-import identity from './identity';
-import isEqual from './isEqual';
-import last from './last';
-import range from "./range";
-import rangeRight from './rangeRight';
-
-export {
-  first,
-  identity,
-  isEqual,
-  last,
-  range,
-  rangeRight
-}
+export {first} from './first';
+export {identity} from './identity';
+export {isEqual} from './isEqual';
+export {last} from './last';
+export {range} from "./range";
+export {rangeRight} from './rangeRight';

@@ -1,11 +1,15 @@
-import type {TArray} from '../../Types';
+import type {THtmlDivArray} from '../../Types';
 import template from './Modal.hbs';
 
-type TObject<T = string | boolean | number | null | undefined | Function> = {
-  [key: string]: T,
+type TDefaultData = {
+  selector?: string,
+  src?: string,
+  wrap?: string,
+  content?: string,
+  hasCloseBtn?: boolean,
+  opened?: Function | null,
 };
-
-const defaultData: TObject = {
+const defaultData: TDefaultData = {
   selector: '[data-modal]',
   src: 'data-modal',
   wrap: 'data-modal-wrap',
@@ -15,10 +19,10 @@ const defaultData: TObject = {
 };
 
 export class Modal {
-  mainData: TObject = {};
+  mainData: TDefaultData = {};
   modalBlock: HTMLDivElement | null = null;
 
-  constructor(options: TObject = {}) {
+  constructor(options: TDefaultData = {}) {
     this.#setMainData(options);
 
     const {
@@ -26,10 +30,10 @@ export class Modal {
         selector,
       },
     } = this;
-    const modals: TArray = Array.from(
+    const modals: THtmlDivArray = Array.from(
       document.querySelectorAll(selector as string),
     );
-    const initModals: TArray = modals.filter((modal: HTMLDivElement) => (
+    const initModals: THtmlDivArray = modals.filter((modal: HTMLDivElement) => (
       !modal.hasAttribute('data-modal-init')
     ));
 
@@ -38,14 +42,14 @@ export class Modal {
     }
   }
 
-  #setMainData = (options: TObject) => {
+  #setMainData = (options: TDefaultData) => {
     this.mainData = {
       ...defaultData,
       ...options,
     };
   };
 
-  #init = (modals: TArray) => {
+  #init = (modals: THtmlDivArray) => {
     modals.forEach((modal: HTMLDivElement) => {
       modal.setAttribute('data-modal-init', 'true');
       return this.#eventListeners(modal);
@@ -55,13 +59,11 @@ export class Modal {
   #eventListeners = (modal: HTMLDivElement) => {
     modal.addEventListener('click', (e: Event) => {
       e.preventDefault();
-      const {
-        mainData: {
-          src,
-          opened,
-          wrap,
-        },
-      } = this;
+
+      const {src} = this.mainData;
+      const {opened} = this.mainData;
+      const {wrap} = this.mainData;
+
       this.#closeAllModals(Array.from(
         document.querySelectorAll(`[${wrap as string}]`),
       ));
@@ -87,7 +89,7 @@ export class Modal {
       }
 
       if (opened) {
-        const openedCallback = opened as Function;
+        const openedCallback = opened;
         openedCallback(this.modalBlock);
       }
     });
@@ -115,10 +117,10 @@ export class Modal {
   };
 
   #reInit = (wrap: HTMLDivElement) => {
-    const modals: TArray = Array.from(
+    const modals: THtmlDivArray = Array.from(
       wrap.querySelectorAll(this.mainData.selector as string),
     );
-    const modalsArray: TArray = modals.map((modal) => {
+    const modalsArray: THtmlDivArray = modals.map((modal) => {
       if (modal.hasAttribute('data-modal-init')) {
         modal.removeAttribute('data-modal-init');
       }
@@ -145,7 +147,7 @@ export class Modal {
     });
   };
 
-  #closeAllModals = (modals: TArray = []) => {
+  #closeAllModals = (modals: THtmlDivArray = []) => {
     modals.forEach((modal: HTMLDivElement) => {
       modal.remove();
     });

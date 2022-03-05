@@ -1,17 +1,16 @@
 import {Block} from '../../modules';
 import type {TData} from '../../Types';
-import Link from '../../components/Link';
-import template from './PageError.hbs';
+import template from './ProfileFormItemLink.hbs';
+import Link from '../Link';
 
-export class PageError extends Block {
+export class ProfileFormItemLink extends Block {
   constructor(props: TData) {
     super(props);
   }
 
   protected initChildren(): void {
     this.children.link = new Link({
-      text: 'Назад к чатам',
-      link: this.props.link,
+      ...this.props,
     });
   }
 

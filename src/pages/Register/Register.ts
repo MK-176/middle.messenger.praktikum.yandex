@@ -1,24 +1,24 @@
 import {Block} from '../../modules';
-import {TObject} from '../../Types';
+import type {TData} from '../../Types';
 import template from './Register.hbs';
 import registerInputs from '../../json/register.json';
 import Title from '../../components/Title';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import Link from '../../components/Link';
-import {submitForm} from '../../utils/submitForm';
+import {submitForm} from '../../utils';
 
 export class Register extends Block {
-  constructor(props: TObject) {
+  constructor(props: TData) {
     super(props);
   }
 
-  initChildren() {
+  protected initChildren(): void {
     this.children.title = new Title({
       text: 'Регистрация',
     });
     this.children.input = [];
-    registerInputs.forEach((props: TObject) => {
+    registerInputs.forEach((props: TData) => {
       const input = new Input({...props});
       (this.children.input as Block[]).push(input);
     });
@@ -32,7 +32,7 @@ export class Register extends Block {
     this.children.link = new Link({text: 'Войти'});
   };
 
-  render() {
+  protected render(): any {
     return this.compile(template, {...this.props});
   }
 }

@@ -1,28 +1,31 @@
-import {TComponentDidMount, TComponentDidUpdate, TObject} from '../Types';
+import type {
+  TComponentDidMount,
+  TComponentDidUpdate,
+  TData,
+} from '../Types';
 import {nanoid} from 'nanoid';
 import {EventBus} from '../modules';
-import {isEqual} from '../utils/mydash';
-import {renderDOM} from '../utils/renderDOM';
+import {isEqual, renderDOM} from '../utils';
 
-export class Block {
+export abstract class Block {
   public id = nanoid(6);
   private _element: HTMLElement | null = null;
   private eventBus: () => (EventBus);
-  protected props: any;
+  protected props: TData;
   protected children: Record<string, Block | Block[]> = {};
-  private EVENTS: TObject = {
+  private EVENTS: TData = {
     INIT: `init-${this.id}`,
     FLOW_CDM: `flow-${this.id}:component-did-mount`,
     FLOW_CDU: `flow-${this.id}:component-did-update`,
     FLOW_RENDER: `flow-${this.id}:render`,
   };
 
-  constructor(propsAndChildren: TObject) {
+  protected constructor(propsAndChildren: TData) {
     const eventBus = new EventBus;
     const {props, children} = this.getChildren(propsAndChildren);
 
     this.children = children;
-    this.props = this._makePropsProxy(props);
+    this.props = this._makePropsProxy(props) as TData;
     this.initChildren();
 
     this.eventBus = () => (eventBus);
@@ -31,7 +34,7 @@ export class Block {
     eventBus.emit(this.EVENTS.INIT);
   }
 
-  _registerEvents(eventBus: TObject) {
+  private _registerEvents(eventBus: TData) {
     eventBus.on(this.EVENTS.INIT, this.init.bind(this));
     eventBus.on(this.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(this.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
@@ -42,7 +45,7 @@ export class Block {
     this.eventBus().emit(this.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
   }
 
-  _componentDidMount() {
+  private _componentDidMount() {
     this.eventBus().emit(this.EVENTS.FLOW_RENDER, {...this.props});
     this.componentDidMount();
   }
@@ -54,7 +57,7 @@ export class Block {
     this._componentDidMount();
   }
 
-  _componentDidUpdate(oldProps: TObject, newProps: TObject) {
+  private _componentDidUpdate(oldProps: TData, newProps: TData) {
     let result: Function | boolean = false;
     const oldElement = this.element;
 
@@ -75,7 +78,7 @@ export class Block {
   protected componentDidUpdate: TComponentDidUpdate = () => {
   };
 
-  setProps: any = (nextProps: TObject) => {
+  setProps: any = (nextProps: TData) => {
     if (!nextProps) {
       return false;
     }
@@ -88,13 +91,18 @@ export class Block {
     const props: any = {};
 
     const addPropsAndChildren = (obj: Array<[string, any]>) => {
-      obj.forEach(([key, value]) => {
-        if (value instanceof Block) {
-          children[key] = value;
-        } else if (Array.isArray(value)) {
-          addPropsAndChildren(value);
+      obj.forEach((item) => {
+        if (Array.isArray(item)) {
+          const [key, value] = item;
+          if (value instanceof Block) {
+            children[key] = value;
+          } else if (Array.isArray(value)) {
+            addPropsAndChildren(value);
+          } else {
+            props[key] = value;
+          }
         } else {
-          props[key] = value;
+          addPropsAndChildren(Object.entries(item));
         }
       });
     };
@@ -114,7 +122,7 @@ export class Block {
     this.initChildren();
   }
 
-  _render() {
+  private _render() {
     const fragment = this.render();
     const newElement = fragment.firstElementChild;
 
@@ -135,27 +143,25 @@ export class Block {
     return this._element;
   };
 
-  _makePropsProxy = (props: TObject): ProxyHandler<any> => {
-    const self = this;
-
-    return new Proxy(props as unknown as object, {
-      get(target: Record<string, any>, prop: string) {
+  private _makePropsProxy = (props: TData): ProxyHandler<any> => (
+    new Proxy(props as unknown as object, {
+      get: (target: Record<string, any>, prop: string) => {
         const value = target[prop];
         return typeof value === 'function' ? value.bind(target) : value;
       },
-      set(target: Record<string, any>, prop: string, value: unknown): boolean {
+      set: (target: Record<string, any>, prop: string, value: unknown): boolean => {
         const oldValue = {...target};
         target[prop] = value;
-        self.eventBus().emit(self.EVENTS.FLOW_CDU, oldValue, target);
+        this.eventBus().emit(this.EVENTS.FLOW_CDU, oldValue, target);
         return true;
       },
-      deleteProperty() {
+      deleteProperty: () => {
         throw new Error('Нет доступа');
       },
-    });
-  };
+    })
+  );
 
-  _removeEvents() {
+  private _removeEvents() {
     const events: Record<string, () => void> = (this.props as any).events;
 
     if (!events || !this._element) {
@@ -167,7 +173,7 @@ export class Block {
     });
   }
 
-  _addEvents() {
+  private _addEvents() {
     const events: Record<string, () => void> = (this.props as any).events;
 
     if (!events) {
@@ -179,7 +185,7 @@ export class Block {
     });
   }
 
-  _createDocumentElement = (tagName: string) => (
+  private _createDocumentElement = (tagName: string) => (
     document.createElement(tagName)
   );
 

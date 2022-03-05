@@ -1,4 +1,4 @@
-const isEqual = (object1: Record<string, any>, object2: Record<string, any>): boolean => {
+export const isEqual = (object1: Record<string, any>, object2: Record<string, any>): boolean => {
   const props1: string[] = Object.getOwnPropertyNames(object1);
   const props2: string[] = Object.getOwnPropertyNames(object2);
 
@@ -18,5 +18,3 @@ const isEqual = (object1: Record<string, any>, object2: Record<string, any>): bo
 
   return true;
 };
-
-export default isEqual;

@@ -1,7 +1,7 @@
 import {Block} from '../../modules';
-import type {TObject} from '../../Types';
+import type {TData} from '../../Types';
 import InputTemplate from './input.hbs';
-import {focusIn, focusOut} from '../../modules/focus';
+import {inputFocusIn, inputFocusOut} from '../../modules/inputFocus';
 import Notice from '../Notice';
 
 const noticeObject = {
@@ -9,11 +9,11 @@ const noticeObject = {
 };
 
 export class Input extends Block {
-  constructor(props: TObject) {
+  constructor(props: TData) {
     super({
       events: {
         focusin: (ev: Event) => {
-          focusIn(ev, (validate: boolean, value: string) => {
+          inputFocusIn(ev, (validate: boolean, value: string) => {
             const props = {
               ...this.props,
               ...noticeObject,
@@ -30,7 +30,7 @@ export class Input extends Block {
           });
         },
         focusout: (ev: Event) => {
-          focusOut(ev, (validate: boolean, value: string) => {
+          inputFocusOut(ev, (validate: boolean, value: string) => {
             const props = {
               ...this.props,
               ...noticeObject,
@@ -58,7 +58,7 @@ export class Input extends Block {
     });
   }
 
-  initChildren() {
+  protected initChildren(): void {
     this.children.notice = new Notice({
       notice: this.props.notice,
     });

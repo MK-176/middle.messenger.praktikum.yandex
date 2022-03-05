@@ -1,4 +1,4 @@
-import {TObject} from '../../Types';
+import type {TData} from '../../Types';
 import ChangeProfileData from '../../components/ChangeProfileData';
 import {Block} from '../../modules';
 import ProfileFormItem from '../../components/ProfileFormItem';
@@ -67,14 +67,14 @@ const profileItems = [
 ];
 
 export class ChangeData extends ChangeProfileData {
-  constructor(props: TObject) {
+  constructor(props: TData) {
     super({...props});
   }
 
-  initChildren() {
+  protected initChildren(): void {
     super.initChildren();
     this.children.profileFormItem = [];
-    (profileItems as TObject[]).forEach((props: TObject) => {
+    (profileItems as TData[]).forEach((props: TData) => {
       const profileItem = new ProfileFormItem({...props, });
 
       (this.children.profileFormItem as Block[]).push(profileItem);

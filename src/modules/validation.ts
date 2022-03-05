@@ -1,16 +1,20 @@
-import {regExp} from '../helpers';
+import {REG_EXP} from '../helpers';
 import {ValidationType} from './EnumValidationType';
-import {checkAndRun} from './checkAndRun';
+import type {TData} from '../Types';
 
-type TValidationOptions = {
-  onError: Function,
-  onSuccess: Function,
-} | null;
+type TValidationOptions = TData | null;
 
-export const validation = (type: ValidationType, value: string = '', options: TValidationOptions = null): boolean => {
-  const result = (value.match(regExp(type)) as string[])?.length > 0;
+export const validation = (
+  type: ValidationType,
+  value: string = '',
+  options: TValidationOptions = null,
+): boolean => {
+  const result = (value.match(REG_EXP(type)) as string[])?.length > 0;
+  const method: string = result ? 'onSuccess' : 'onError';
 
-  checkAndRun(options, result ? 'onSuccess' : 'onError');
+  if (options?.hasOwnProperty(method)) {
+    options[method]();
+  }
 
   return result;
 };

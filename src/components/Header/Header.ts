@@ -1,11 +1,10 @@
 import {Block} from '../../modules';
 import template from './Header.hbs';
-import {TObject} from '../../Types';
+import type {TData} from '../../Types';
 import {ListItem} from '../ListItem/ListItem';
 import UpdateModal from '../UpdateModal';
 import Button from '../Button';
 import Link from '../Link';
-
 
 const listItems = [
   {
@@ -38,18 +37,18 @@ const updateModals = [
 ];
 
 export class Header extends Block {
-  constructor(props: TObject) {
+  constructor(props: TData) {
     super(props);
   }
 
-  initChildren() {
+  protected initChildren(): any {
     this.children.listItem = [];
-    listItems.forEach((...props) => {
+    listItems.forEach((props) => {
       const item = new ListItem({...props});
       (this.children.listItem as Block[]).push(item);
     });
     this.children.updateModals = [];
-    updateModals.forEach((...props) => {
+    updateModals.forEach((props) => {
       const modal = new UpdateModal({...props});
       (this.children.updateModals as Block[]).push(modal);
     });
@@ -63,7 +62,7 @@ export class Header extends Block {
     });
   }
 
-  render(): DocumentFragment {
+  protected render(): any {
     return this.compile(template, {...this.props});
   }
 }

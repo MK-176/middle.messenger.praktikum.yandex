@@ -1,5 +1,6 @@
-export const regExp = (type: string | null = null): RegExp => {
+export const REG_EXP = (type: string | null = null): RegExp => {
   let regExp;
+
   switch (type?.toLowerCase()) {
     case 'name': {
       regExp = /^[A-ZА-Я]([a-zа-я]\D)*/g;
@@ -26,5 +27,6 @@ export const regExp = (type: string | null = null): RegExp => {
       break;
     }
   }
+
   return regExp;
 };

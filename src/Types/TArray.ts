@@ -1,2 +1,2 @@
-export type TArray = Array<HTMLDivElement>;
-export type TArrayElement = Array<HTMLElement>;
+export type THtmlDivArray = Array<HTMLDivElement>;
+export type THtmlElementArray = Array<HTMLElement>;

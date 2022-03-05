@@ -1,7 +1,7 @@
 export class EventBus {
   private static instance: EventBus;
 
-  listeners: Record<string, any> = {};
+  private _listeners: Record<string, any> = {};
 
   public constructor() {
     if (!EventBus.instance) {
@@ -11,32 +11,32 @@ export class EventBus {
     return EventBus.instance;
   }
 
-  on(event: string, callback: Function) {
-    if (!this.listeners[event]) {
-      this.listeners[event] = [];
+  public on(event: string, callback: Function) {
+    if (!this._listeners[event]) {
+      this._listeners[event] = [];
     }
 
-    this.listeners[event].push(callback);
+    this._listeners[event].push(callback);
   }
 
-  off(event: string, callback: Function) {
+  public off(event: string, callback: Function) {
     this._throwError(event);
 
-    this.listeners[event] = this.listeners[event].filter(
+    this._listeners[event] = this._listeners[event].filter(
       (listener: Function) => (listener !== callback),
     );
   }
 
-  emit(event: string, ...args: any) {
+  public emit(event: string, ...args: any) {
     this._throwError(event);
 
-    this.listeners[event].forEach((listener: Function) => {
+    this._listeners[event].forEach((listener: Function) => {
       listener(...args);
     });
   }
 
-  _throwError(event: string) {
-    if (event && !this.listeners[event]) {
+  private _throwError(event: string) {
+    if (event && !this._listeners[event]) {
       throw new Error(`Нет события ${event}`);
     }
   }

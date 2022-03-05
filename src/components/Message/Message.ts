@@ -1,13 +1,13 @@
 import {Block} from '../../modules';
-import {TObject} from '../../Types';
+import type {TData} from '../../Types';
 import template from './Message.hbs';
 
 export class Message extends Block {
-  constructor(props: TObject) {
+  constructor(props: TData) {
     super(props);
   }
 
-  render(): DocumentFragment {
+  protected render(): any {
     return this.compile(template, {...this.props});
   }
 }

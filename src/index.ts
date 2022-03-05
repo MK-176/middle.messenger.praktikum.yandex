@@ -1,7 +1,7 @@
-import {renderDOM} from './utils/renderDOM';
+import {renderDOM} from './utils';
 import Modal from './components/Modal';
 import Preloader from './components/Preloader';
-import {submitForm} from './utils/submitForm';
+import {submitForm} from './utils';
 
 document.addEventListener('DOMContentLoaded', async () => {
   const path: string = location.pathname;

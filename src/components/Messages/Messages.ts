@@ -1,8 +1,7 @@
 import {Block} from '../../modules';
-import {TObject} from '../../Types';
+import type {TData} from '../../Types';
 import template from './Messages.hbs';
 import {Message} from '../Message/Message';
-
 
 const messages = [
   {
@@ -40,19 +39,20 @@ const messages = [
 ];
 
 export class Messages extends Block {
-  constructor(props: TObject) {
+  constructor(props: TData) {
     super(props);
   }
 
-  initChildren() {
+  protected initChildren(): void {
     this.children.messages = [];
-    messages.forEach((...props) => {
+    messages.forEach((props) => {
       const message = new Message({...props});
+
       (this.children.messages as Block[]).push(message);
     });
   }
 
-  render(): DocumentFragment {
+  protected render(): any {
     return this.compile(template, {...this.props});
   }
 }

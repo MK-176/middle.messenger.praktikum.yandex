@@ -1,1 +1,1 @@
-export {regExp} from './regExp';
+export {REG_EXP} from './REG_EXP';

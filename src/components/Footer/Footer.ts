@@ -1,5 +1,5 @@
 import {Block} from '../../modules';
-import {TObject} from '../../Types';
+import type {TData} from '../../Types';
 import template from './Footer.hbs';
 import {ListItem} from '../ListItem/ListItem';
 
@@ -17,12 +17,13 @@ const listItems = [
     text: 'Локация',
   },
 ];
+
 export class Footer extends Block {
-  constructor(props: TObject) {
+  constructor(props: TData) {
     super(props);
   }
 
-  initChildren() {
+  protected initChildren(): any {
     this.children.listItem = [];
     listItems.forEach((props) => {
       const item = new ListItem({...props});
@@ -30,7 +31,7 @@ export class Footer extends Block {
     });
   }
 
-  render(): DocumentFragment {
+  protected render(): any {
     return this.compile(template, {...this.props});
   }
 }

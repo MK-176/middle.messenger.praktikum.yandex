@@ -1,18 +1,19 @@
-import type {TArrayElement} from "../../Types/TArray";
-import setClass from '../../utils/setClass';
+import type {THtmlElementArray} from '../Types';
+import {setClass} from '../utils';
 
 const data = 'data-contact';
-
-const setActive = (arr: TArrayElement = [], id: string) => arr.map((contact: HTMLElement) => {
-  return setClass(
-    contact,
-    'active',
-    contact.getAttribute(data) === id
-  );
-});
+const addActiveClassToContact = (arr: THtmlElementArray = [], id: string) => (
+  arr.map((contact: HTMLElement) => (
+    setClass(
+      contact,
+      'active',
+      contact.getAttribute(data) === id,
+    )
+  ))
+);
 
 export const contact = () => {
-  const contacts: TArrayElement = Array.from(
+  const contacts: THtmlElementArray = Array.from(
     document.querySelectorAll(`[${data}]`),
   );
   contacts.forEach((item: HTMLElement) => {
@@ -22,7 +23,7 @@ export const contact = () => {
         || target.closest(`[${data}]`);
 
       if (isTarget && !target.classList.contains('active')) {
-        setActive(contacts, (item.getAttribute(data) as string));
+        addActiveClassToContact(contacts, (item.getAttribute(data) as string));
       }
     });
   });

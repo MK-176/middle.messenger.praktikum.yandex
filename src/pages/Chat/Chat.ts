@@ -1,5 +1,5 @@
 import {Block} from '../../modules';
-import {TObject} from '../../Types';
+import type {TData} from '../../Types';
 import template from './Chat.hbs';
 import Sidebar from '../../components/Sidebar';
 import Header from '../../components/Header';
@@ -8,11 +8,11 @@ import Messages from '../../components/Messages';
 
 
 export class Chat extends Block {
-  constructor(props: TObject) {
+  constructor(props: TData) {
     super(props);
   }
 
-  initChildren() {
+  protected initChildren(): void {
     this.children.sidebar = new Sidebar({});
     this.children.header = new Header({});
     this.children.messages = new Messages({
@@ -21,7 +21,7 @@ export class Chat extends Block {
     this.children.footer = new Footer({});
   }
 
-  render(): DocumentFragment {
+  protected render(): any {
     return this.compile(template, {...this.props});
   }
 }

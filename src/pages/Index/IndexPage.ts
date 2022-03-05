@@ -1,19 +1,19 @@
 import {Block} from '../../modules';
-import {TObject} from '../../Types';
+import type {TData} from '../../Types';
 import template from './IndexPage.hbs';
 import Sidebar from '../../components/Sidebar';
 
 
 export class IndexPage extends Block {
-  constructor(props: TObject) {
+  constructor(props: TData) {
     super(props);
   }
 
-  initChildren() {
+  protected initChildren(): void {
     this.children.sidebar = new Sidebar({});
   }
 
-  render(): any {
+  protected render(): any {
     return this.compile(template, {...this.props});
   }
 }

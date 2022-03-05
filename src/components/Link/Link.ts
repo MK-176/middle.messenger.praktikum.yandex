@@ -1,14 +1,13 @@
 import {Block} from '../../modules';
-import {TObject} from '../../Types';
+import type {TData} from '../../Types';
 import template from './Link.hbs';
 
 export class Link extends Block {
-  constructor(props: TObject) {
+  constructor(props: TData) {
     super(props);
   }
 
-
-  render(): any {
+  protected render(): any {
     return this.compile(template, {...this.props});
   }
 }

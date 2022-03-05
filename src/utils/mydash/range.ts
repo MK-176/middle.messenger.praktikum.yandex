@@ -11,7 +11,7 @@ const baseRange = (start: number, end: number, step: number, isRight: boolean): 
   return result;
 }
 
-const range = (start: number = 0, end: number, step: number, isRight: boolean = false): number[] => {
+export const range = (start: number = 0, end: number, step: number, isRight: boolean = false): number[] => {
   if (end === undefined) {
     end = start;
     start = 0;
@@ -21,5 +21,3 @@ const range = (start: number = 0, end: number, step: number, isRight: boolean = 
 
   return baseRange(start, end, step, isRight);
 };
-
-export default range;

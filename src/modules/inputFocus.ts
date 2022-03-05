@@ -1,4 +1,4 @@
-import setClass from '../utils/setClass';
+import {setClass} from '../utils';
 import {validation} from './validation';
 import {ValidationType} from './EnumValidationType';
 
@@ -7,7 +7,7 @@ const data: { [key: string]: string } = {
   type: 'data-input-type',
 };
 
-export const focusIn = (ev: Event, callback: Function | null = null): void => {
+export const inputFocusIn = (ev: Event, callback: Function | null = null): void => {
   const target = ev.target as HTMLFormElement;
 
   if (target.nodeName.toLowerCase() === 'input') {
@@ -25,7 +25,7 @@ export const focusIn = (ev: Event, callback: Function | null = null): void => {
   }
 };
 
-export const focusOut = (ev: Event, callback: Function | null = null): void => {
+export const inputFocusOut = (ev: Event, callback: Function | null = null): void => {
   const target = ev.target as HTMLFormElement;
 
   if (target.nodeName.toLowerCase() === 'input' && target.hasAttribute(data.type)) {

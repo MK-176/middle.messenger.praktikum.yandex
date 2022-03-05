@@ -1,9 +1,9 @@
 import template from "./Title.hbs";
 import {Block} from '../../modules';
-import {TObject} from '../../Types';
+import type {TData} from '../../Types';
 
 export default class Title extends Block {
-  constructor(props: TObject) {
+  constructor(props: TData) {
     super(props);
   }
 

@@ -1,13 +1,13 @@
 import ButtonTmpl from './Button.hbs';
 import {Block} from '../../modules';
-import type {TObject} from '../../Types';
+import type {TData} from '../../Types';
 
 export class Button extends Block {
-  constructor(props: TObject) {
+  constructor(props: TData) {
     super(props);
   }
 
-  render(): any {
+  protected render(): any {
     return this.compile(ButtonTmpl, {...this.props});
   }
 }

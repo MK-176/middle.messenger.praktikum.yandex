@@ -1,4 +1,4 @@
-const last = (arr: unknown[]): unknown => {
+export const last = (arr: unknown[]): unknown => {
   if (!Array.isArray(arr)) {
     return undefined;
   }
@@ -7,5 +7,3 @@ const last = (arr: unknown[]): unknown => {
 
   return length ? arr[length - 1] : undefined;
 };
-
-export default last;
