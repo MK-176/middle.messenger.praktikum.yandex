@@ -12,7 +12,7 @@ const addActiveClassToContact = (arr: THtmlElementArray = [], id: string) => (
   ))
 );
 
-export const contact = () => {
+export const addClickListenerToContact = () => {
   const contacts: THtmlElementArray = Array.from(
     document.querySelectorAll(`[${data}]`),
   );
