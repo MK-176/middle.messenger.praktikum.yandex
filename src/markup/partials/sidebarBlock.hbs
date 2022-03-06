@@ -1,0 +1,20 @@
+<div class="sidebar" data-search-block>
+    <div class="sidebar__title">
+        <div class="sidebar__column sidebar__column--right">
+            <a href="./profile.hbs" class="sidebar__link">
+                Профиль
+            </a>
+        </div>
+        <div class="sidebar__search">
+            {{>search}}
+        </div>
+    </div>
+    <div class="sidebar__content">
+        <div class="sidebar__content-block">
+            {{>chatContact id=0 name="Bilbo Baggins" message="Some text" time="12:21" count=5 isActive=isActive}}
+            {{#each contacts}}
+                {{>chatContact id=id name=name message=message time=time count=count}}
+            {{/each}}
+        </div>
+    </div>
+</div>

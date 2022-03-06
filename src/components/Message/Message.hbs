@@ -1,0 +1,8 @@
+<div class="message {{#if media}}media{{/if}} {{#if mine}}mine{{else}}someone{{/if}}">
+    <div class="message__content" data-is-html>
+        {{text}}
+    </div>
+    <div class="message__meta{{#if mine}} status{{/if}}{{#if seen}} seen{{/if}}">
+        {{time}}
+    </div>
+</div>

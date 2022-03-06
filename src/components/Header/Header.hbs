@@ -1,0 +1,27 @@
+<header class="chat__title">
+    <div class="chat__user">
+        <div class="chat__user-avatar"></div>
+        <div class="chat__user-name">{{name}}</div>
+    </div>
+    <div class="chat__config">
+        <button type="button"
+                class="button button--transparent button--config"></button>
+        <div class="list-item-modal chat__config-block">
+            {{{listItem}}}
+        </div>
+    </div>
+    <div hidden>
+        {{{updateModals}}}
+        <div class="update-modal" data-modal-block="remove-chat">
+            <div class="update-modal__title">Вы уверены, что хотите удалить этот чат</div>
+            <div class="update-modal__block">
+                <div class="button-block">
+                    {{{button}}}
+                </div>
+                <div class="button-block">
+                    {{{link}}}
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

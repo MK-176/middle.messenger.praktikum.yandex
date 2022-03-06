@@ -10,14 +10,14 @@ $modal: '.modal';
   left: 0;
   z-index: 1000;
   display: flex;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: $color-bg-transparent;
 
   &__block {
     position: relative;
     padding: 30px;
     margin: auto;
     background-color: $color-bg-additional;
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);
+    box-shadow: 0 0 6px $color-bg-transparent-additional;
     border-radius: 12px;
 
     &-content {

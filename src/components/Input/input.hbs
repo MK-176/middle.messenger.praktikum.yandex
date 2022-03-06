@@ -1,0 +1,15 @@
+<div class="input-block input-block--{{modify}} {{#if filled}}filled{{/if}} {{#if error}}error{{/if}}"
+     data-input-block>
+    {{#if label}}
+        <div class="input-label"
+             data-input-label>{{label}}</div>
+    {{/if}}
+    <input type="{{type}}"
+           class="input input--{{modify}}"
+           value="{{value}}"
+           name="{{name}}"
+           placeholder="{{placeholder}}"
+           data-input-type="{{inputType}}"
+    />
+    {{{notice}}}
+</div>
