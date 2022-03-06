@@ -14,7 +14,9 @@ export class Chat extends Block {
 
   protected initChildren(): void {
     this.children.sidebar = new Sidebar({});
-    this.children.header = new Header({});
+    this.children.header = new Header({
+      name: 'Bilbo Baggins',
+    });
     this.children.messages = new Messages({
       date: this.props.date,
     });

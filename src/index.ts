@@ -9,7 +9,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   let props: Record<string, any>;
 
   switch (path) {
-    case '/': {
+    case '/':
+    case '/index.html': {
       Page = await import('./pages/Index');
       props = {};
       break;
