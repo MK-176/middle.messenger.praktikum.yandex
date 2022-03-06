@@ -3,6 +3,7 @@
 
 ### PULL REQUESTS
 - [Sprint 1 #1](https://github.com/MK-176/middle.messenger.praktikum.yandex/pull/1)
+- [Sprint 2](https://github.com/MK-176/middle.messenger.praktikum.yandex/pull/2)
 
 ###### Список страниц со ссылкой на Netlify
 - [Список контактов](https://62247f341d8bf30007c66d64--cocky-shannon-993c10.netlify.app/index.html)
