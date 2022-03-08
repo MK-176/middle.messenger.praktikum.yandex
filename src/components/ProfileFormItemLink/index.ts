@@ -1,1 +1,1 @@
-export {ProfileFormItemLink as default} from './ProfileFormItemLink';
+export { ProfileFormItemLink as default } from './ProfileFormItemLink';

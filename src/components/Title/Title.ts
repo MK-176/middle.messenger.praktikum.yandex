@@ -1,13 +1,13 @@
-import template from "./Title.hbs";
-import {Block} from '../../modules';
-import type {TData} from '../../Types';
+import { Block } from '../../modules';
+import type { TData } from '../../Types';
+import template from './Title.hbs';
 
-export default class Title extends Block {
+export class Title extends Block {
   constructor(props: TData) {
     super(props);
   }
 
   protected render(): DocumentFragment {
-    return this.compile(template, {...this.props});
+    return this.compile(template, { ...this.props });
   }
 }

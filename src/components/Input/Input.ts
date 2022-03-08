@@ -1,7 +1,7 @@
-import {Block} from '../../modules';
-import type {TData} from '../../Types';
+import { Block } from '../../modules';
+import type { TData } from '../../Types';
 import InputTemplate from './input.hbs';
-import {inputFocusIn, inputFocusOut} from '../../modules/inputFocus';
+import { inputFocusIn, inputFocusOut } from '../../modules/inputFocus';
 import Notice from '../Notice';
 
 const noticeObject = {
@@ -14,7 +14,7 @@ export class Input extends Block {
       events: {
         focusin: (ev: Event) => {
           inputFocusIn(ev, (validate: boolean, value: string) => {
-            const props = {
+            const $props = {
               ...this.props,
               ...noticeObject,
               value,
@@ -23,7 +23,7 @@ export class Input extends Block {
 
             if ((ev.target as HTMLFormElement).value !== this.props.value) {
               this.setProps({
-                ...props,
+                ...$props,
                 error: value && validate,
               });
             }
@@ -31,7 +31,7 @@ export class Input extends Block {
         },
         focusout: (ev: Event) => {
           inputFocusOut(ev, (validate: boolean, value: string) => {
-            const props = {
+            const $props = {
               ...this.props,
               ...noticeObject,
               value,
@@ -41,13 +41,13 @@ export class Input extends Block {
 
             if (validate && value) {
               this.setProps({
-                ...props,
+                ...$props,
                 error: false,
               });
               (this.element as HTMLDivElement).classList.add('filled');
             } else {
               this.setProps({
-                ...props,
+                ...$props,
                 error: true,
               });
             }
@@ -58,13 +58,13 @@ export class Input extends Block {
     });
   }
 
-  protected initChildren(): void {
+  initChildren(): void {
     this.children.notice = new Notice({
       notice: this.props.notice,
     });
   }
 
   protected render(): DocumentFragment {
-    return this.compile(InputTemplate, {...this.props});
+    return this.compile(InputTemplate, { ...this.props });
   }
 }

@@ -1,18 +1,17 @@
-import {Block} from '../../modules';
-import type {TData} from '../../Types';
+import { Block } from '../../modules';
+import type { TData } from '../../Types';
 import template from './Chat.hbs';
 import Sidebar from '../../components/Sidebar';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Messages from '../../components/Messages';
 
-
 export class Chat extends Block {
   constructor(props: TData) {
     super(props);
   }
 
-  protected initChildren(): void {
+  initChildren(): void {
     this.children.sidebar = new Sidebar({});
     this.children.header = new Header({
       name: 'Bilbo Baggins',
@@ -24,6 +23,6 @@ export class Chat extends Block {
   }
 
   protected render(): DocumentFragment {
-    return this.compile(template, {...this.props});
+    return this.compile(template, { ...this.props });
   }
 }

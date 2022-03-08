@@ -1,4 +1,4 @@
-import type {THtmlDivArray} from '../../Types';
+import type { THtmlDivArray } from '../../Types';
 import template from './Modal.hbs';
 
 type TDefaultData = {
@@ -60,9 +60,9 @@ export class Modal {
     modal.addEventListener('click', (e: Event) => {
       e.preventDefault();
 
-      const {src} = this.mainData;
-      const {opened} = this.mainData;
-      const {wrap} = this.mainData;
+      const { src } = this.mainData;
+      const { opened } = this.mainData;
+      const { wrap } = this.mainData;
 
       this.#closeAllModals(Array.from(
         document.querySelectorAll(`[${wrap as string}]`),
@@ -89,8 +89,7 @@ export class Modal {
       }
 
       if (opened) {
-        const openedCallback = opened;
-        openedCallback(this.modalBlock);
+        opened(this.modalBlock);
       }
     });
   };
@@ -140,11 +139,12 @@ export class Modal {
   };
 
   #closeModal = (modal: HTMLDivElement) => {
-    modal.addEventListener('click', function removeModal(ev: Event) {
+    const removeModal = (ev: Event) => {
       if ((ev.target as HTMLElement).classList.contains('modal')) {
         modal.remove();
       }
-    });
+    };
+    modal.addEventListener('click', removeModal);
   };
 
   #closeAllModals = (modals: THtmlDivArray = []) => {

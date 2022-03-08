@@ -1,15 +1,15 @@
-import {Block} from '../../modules';
-import type {TData} from '../../Types';
-import template from './Avatar.hbs';
+import { Block } from '../../modules';
+import type { TData } from '../../Types';
 import Button from '../Button';
 import Link from '../Link';
+import template from './Avatar.hbs';
 
 export class Avatar extends Block {
   constructor(props: TData) {
     super(props);
   }
 
-  protected initChildren(): void {
+  initChildren(): void {
     this.children.button = new Button({
       text: 'Поменять',
       type: 'button',
@@ -21,6 +21,6 @@ export class Avatar extends Block {
   }
 
   protected render(): DocumentFragment {
-    return this.compile(template, {...this.props});
+    return this.compile(template, { ...this.props });
   }
 }

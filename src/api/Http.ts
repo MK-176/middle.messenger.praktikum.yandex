@@ -1,4 +1,4 @@
-import {queryStringify} from '../utils';
+import { queryStringify } from '../utils';
 
 enum Method {
   GET = 'GET',
@@ -18,7 +18,7 @@ export class Http {
   get = (url: string, options: TOptions = {}): Promise<XMLHttpRequest> => (
     this.request(
       url,
-      {...options, method: Method.GET},
+      { ...options, method: Method.GET },
       options.timeout,
     )
   );
@@ -26,7 +26,7 @@ export class Http {
   post = (url: string, options: TOptions = {}): Promise<XMLHttpRequest> => (
     this.request(
       url,
-      {...options, method: Method.POST},
+      { ...options, method: Method.POST },
       options.timeout,
     )
   );
@@ -34,7 +34,7 @@ export class Http {
   put = (url: string, options: TOptions = {}): Promise<XMLHttpRequest> => (
     this.request(
       url,
-      {...options, method: Method.PUT},
+      { ...options, method: Method.PUT },
       options.timeout,
     )
   );
@@ -42,7 +42,7 @@ export class Http {
   delete = (url: string, options: TOptions = {}): Promise<XMLHttpRequest> => (
     this.request(
       url,
-      {...options, method: Method.DELETE},
+      { ...options, method: Method.DELETE },
       options.timeout,
     )
   );
@@ -55,7 +55,7 @@ export class Http {
   }: Record<string, any>, timeout: number = 5000): Promise<XMLHttpRequest> => (
     new Promise((resolve, reject) => {
       if (!method) {
-        reject('No method');
+        reject(new Error('No method'));
         return;
       }
 
@@ -79,7 +79,7 @@ export class Http {
           if (xhr.status === 200 && xhr.response) {
             resolve(xhr);
           } else {
-            reject('Error');
+            reject(new Error('Error'));
           }
         }
       };

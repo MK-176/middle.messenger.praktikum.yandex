@@ -1,25 +1,25 @@
-import {Block} from '../../modules';
-import type {TData} from '../../Types';
-import template from './Sidebar.hbs';
-import contacts from '../../json/contacts.json';
+import { Block } from '../../modules';
+import type { TData } from '../../Types';
 import Search from '../Search';
 import ChatContact from '../ChatContact';
+import template from './Sidebar.hbs';
+import contacts from '../../json/contacts.json';
 
 export class Sidebar extends Block {
   constructor(props: TData) {
-    super({...props, link: './profile-page.html'});
+    super({ ...props, link: './profile-page.html' });
   }
 
-  protected initChildren(): void {
+  initChildren(): void {
     this.children.search = new Search({});
     this.children.contact = [];
     contacts.forEach((props: TData) => {
-      const contact = new ChatContact({...props});
+      const contact = new ChatContact({ ...props });
       (this.children.contact as Block[]).push(contact);
     });
   }
 
   protected render(): DocumentFragment {
-    return this.compile(template, {...this.props});
+    return this.compile(template, { ...this.props });
   }
 }

@@ -1,1 +1,1 @@
-export {PageError as default} from './PageError';
+export { PageError as default } from './PageError';

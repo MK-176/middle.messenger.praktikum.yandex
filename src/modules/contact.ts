@@ -1,5 +1,5 @@
-import type {THtmlElementArray} from '../Types';
-import {setClass} from '../utils';
+import type { THtmlElementArray } from '../Types';
+import { setClass } from '../utils';
 
 const data = 'data-contact';
 const addActiveClassToContact = (arr: THtmlElementArray = [], id: string) => (

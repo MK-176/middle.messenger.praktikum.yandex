@@ -1,20 +1,20 @@
-import {Block} from '../../modules';
-import type {TData} from '../../Types';
-import template from './ProfileFormItemLink.hbs';
+import { Block } from '../../modules';
+import type { TData } from '../../Types';
 import Link from '../Link';
+import template from './ProfileFormItemLink.hbs';
 
 export class ProfileFormItemLink extends Block {
   constructor(props: TData) {
     super(props);
   }
 
-  protected initChildren(): void {
+  initChildren(): void {
     this.children.link = new Link({
       ...this.props,
     });
   }
 
   protected render(): DocumentFragment {
-    return this.compile(template, {...this.props});
+    return this.compile(template, { ...this.props });
   }
 }

@@ -1,23 +1,67 @@
-const baseRange = (start: number, end: number, step: number, isRight: boolean): number[] => {
+interface IRange {
+  start: number,
+}
+
+interface IMainRange extends IRange {
+  end?: number,
+  step?: number,
+  isRight?: boolean,
+}
+
+interface IBaseRange extends IRange {
+  end: number,
+  step: number,
+  isRight: boolean,
+}
+
+const baseRange = (props: IBaseRange): number[] => {
+  const {
+    start,
+    end,
+    step,
+    isRight,
+  } = props;
+  let $start = start;
   let index = -1;
-  let length = Math.max(Math.ceil((end - start) / (step || 1)), 0);
+  let length = Math.max(Math.ceil((end - $start) / (step || 1)), 0);
   const result = new Array(length);
 
   while (length--) {
-    result[isRight ? length : ++index] = start;
-    start += step;
+    result[isRight ? length : ++index] = $start;
+    $start += step;
   }
 
   return result;
-}
+};
 
-export const range = (start: number = 0, end: number, step: number, isRight: boolean = false): number[] => {
-  if (end === undefined) {
-    end = start;
-    start = 0;
+export const range = (props: IMainRange): number[] => {
+  const {
+    start = 0,
+    end,
+    step,
+    isRight = false,
+  } = props;
+  let $start = start;
+  let $end = end;
+  let $step = step;
+
+  if ($end === undefined) {
+    $end = $start;
+    $start = 0;
   }
 
-  step = step === undefined ? (start < end ? 1 : -1) : step;
+  if ($step === undefined) {
+    if ($start < $end) {
+      $step = 1;
+    } else {
+      $step = -1;
+    }
+  }
 
-  return baseRange(start, end, step, isRight);
+  return baseRange({
+    start: $start,
+    end: $end,
+    step: $step,
+    isRight,
+  });
 };

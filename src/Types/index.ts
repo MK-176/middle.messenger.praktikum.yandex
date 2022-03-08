@@ -1,9 +1,9 @@
-export {TData} from './TData';
+export { TData } from './TData';
 export {
   THtmlDivArray,
   THtmlElementArray,
 } from './TArray';
-export {TProps} from './TProps';
+export { TProps } from './TProps';
 export {
   TComponentDidMount,
   TComponentDidUpdate,

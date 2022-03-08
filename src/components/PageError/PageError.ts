@@ -1,20 +1,20 @@
-import {Block} from '../../modules';
-import type {TData} from '../../Types';
-import template from './Page404.hbs';
+import { Block } from '../../modules';
 import Link from '../../components/Link';
+import type { TData } from '../../Types';
+import template from './Page404.hbs';
 
 export class PageError extends Block {
   constructor(props: TData) {
     super(props);
   }
 
-  protected initChildren(): void {
+  initChildren(): void {
     this.children.link = new Link({
       text: 'Назад к чатам',
     });
   }
 
   protected render(): DocumentFragment {
-    return this.compile(template, {...this.props});
+    return this.compile(template, { ...this.props });
   }
 }

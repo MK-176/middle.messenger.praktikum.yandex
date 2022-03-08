@@ -1,7 +1,7 @@
-import {Block} from '../../modules';
-import type {TData} from '../../Types';
+import { Block } from '../../modules';
+import type { TData } from '../../Types';
+import { ListItem } from '../ListItem/ListItem';
 import template from './Footer.hbs';
-import {ListItem} from '../ListItem/ListItem';
 
 const listItems = [
   {
@@ -23,15 +23,15 @@ export class Footer extends Block {
     super(props);
   }
 
-  protected initChildren(): any {
+  initChildren(): any {
     this.children.listItem = [];
     listItems.forEach((props) => {
-      const item = new ListItem({...props});
+      const item = new ListItem({ ...props });
       (this.children.listItem as Block[]).push(item);
     });
   }
 
   protected render(): DocumentFragment {
-    return this.compile(template, {...this.props});
+    return this.compile(template, { ...this.props });
   }
 }

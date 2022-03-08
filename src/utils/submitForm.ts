@@ -5,7 +5,7 @@ export const submitForm = (ev: Event) => {
   const form = (target.nodeName.toLowerCase() === 'button')
     ? (target.closest('form') as HTMLFormElement)
     : target;
-  const formData = new FormData(form);
+  const formData = new FormData(form) as FormData;
 
   if (formData.get('old-password')) {
     if (formData.get('password') === formData.get('old-password')) {
@@ -20,7 +20,8 @@ export const submitForm = (ev: Event) => {
   }
 
   let obj = {};
-  for (const [key, value] of formData.entries()) {
+  for (const elem of formData.entries()) {
+    const [key, value] = elem;
     obj = {
       ...obj,
       ...(value ? {

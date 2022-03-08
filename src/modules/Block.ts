@@ -1,11 +1,11 @@
+import { nanoid } from 'nanoid';
 import type {
   TComponentDidMount,
   TComponentDidUpdate,
   TData,
 } from '../Types';
-import {nanoid} from 'nanoid';
-import {EventBus} from '../modules';
-import {isEqual, renderDOM} from '../utils';
+import { EventBus } from '../modules';
+import { isEqual, renderDOM } from '../utils';
 
 export abstract class Block {
   public id = nanoid(6);
@@ -21,8 +21,8 @@ export abstract class Block {
   };
 
   protected constructor(propsAndChildren: TData) {
-    const eventBus = new EventBus;
-    const {props, children} = this.getChildren(propsAndChildren);
+    const eventBus = new EventBus();
+    const { props, children } = this.getChildren(propsAndChildren);
 
     this.children = children;
     this.props = this._makePropsProxy(props) as TData;
@@ -46,7 +46,7 @@ export abstract class Block {
   }
 
   private _componentDidMount() {
-    this.eventBus().emit(this.EVENTS.FLOW_RENDER, {...this.props});
+    this.eventBus().emit(this.EVENTS.FLOW_RENDER, { ...this.props });
     this.componentDidMount();
   }
 
@@ -63,7 +63,7 @@ export abstract class Block {
 
     if (!isEqual(oldProps, newProps)) {
       result = (): boolean => {
-        this.eventBus().emit(this.EVENTS.FLOW_RENDER, {...this.props});
+        this.eventBus().emit(this.EVENTS.FLOW_RENDER, { ...this.props });
         return true;
       };
     }
@@ -83,10 +83,10 @@ export abstract class Block {
       return false;
     }
 
-    Object.assign(this.props, nextProps);
+    return Object.assign(this.props, nextProps);
   };
 
-  getChildren(propsAndChildren: any) {
+  getChildren = (propsAndChildren: any) => {
     const children: any = {};
     const props: any = {};
 
@@ -108,14 +108,14 @@ export abstract class Block {
     };
     addPropsAndChildren(Object.entries(propsAndChildren));
 
-    return {props, children};
-  }
+    return { props, children };
+  };
 
   get element() {
     return this._element;
   }
 
-  protected initChildren() {
+  initChildren() {
   }
 
   dispatchInitChildren() {
@@ -139,9 +139,9 @@ export abstract class Block {
     return new DocumentFragment();
   }
 
-  getContent = () => {
+  getContent() {
     return this._element;
-  };
+  }
 
   private _makePropsProxy = (props: TData): ProxyHandler<any> => (
     new Proxy(props as unknown as object, {
@@ -150,9 +150,12 @@ export abstract class Block {
         return typeof value === 'function' ? value.bind(target) : value;
       },
       set: (target: Record<string, any>, prop: string, value: unknown): boolean => {
-        const oldValue = {...target};
-        target[prop] = value;
-        this.eventBus().emit(this.EVENTS.FLOW_CDU, oldValue, target);
+        const oldValue = { ...target };
+        const currentValue = { ...target };
+
+        currentValue[prop] = value;
+        this.eventBus().emit(this.EVENTS.FLOW_CDU, oldValue, currentValue);
+
         return true;
       },
       deleteProperty: () => {
@@ -210,10 +213,10 @@ export abstract class Block {
       });
     };
 
-    Object.entries(this.children).map(([key, child]) => {
+    Object.entries(this.children).forEach(([key, child]) => {
       if (Array.isArray(child)) {
         context[key] = '';
-        child.map((children) => {
+        child.forEach((children) => {
           context[key] += `<div data-id="id-${children.id}"></div>`;
         });
       } else {

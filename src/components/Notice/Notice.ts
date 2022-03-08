@@ -1,5 +1,5 @@
-import {Block} from '../../modules';
-import type {TData} from '../../Types';
+import { Block } from '../../modules';
+import type { TData } from '../../Types';
 import template from './Notice.hbs';
 
 export class Notice extends Block {
@@ -8,6 +8,6 @@ export class Notice extends Block {
   }
 
   protected render(): DocumentFragment {
-    return this.compile(template, {...this.props});
+    return this.compile(template, { ...this.props });
   }
 }

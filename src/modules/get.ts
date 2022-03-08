@@ -2,12 +2,13 @@ export const get = (obj: any, path: string, defaultValue: any): object => {
   const keys: Array<string> = path.split('.');
   let result: any = obj;
 
-  for (let key of keys) {
+  const condition = keys.some((key) => {
     result = result[key];
+    return result === undefined;
+  });
 
-    if (result === undefined) {
-      return defaultValue;
-    }
+  if (condition) {
+    return defaultValue;
   }
 
   return result ?? defaultValue;

@@ -1,1 +1,1 @@
-export {ChangeData as default} from './ChangeData';
+export { ChangeData as default } from './ChangeData';

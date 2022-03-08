@@ -1,5 +1,5 @@
-import {Block} from '../../modules';
-import type {TData} from '../../Types';
+import { Block } from '../../modules';
+import type { TData } from '../../Types';
 import BackButton from '../../components/BackButton';
 import Avatar from '../../components/Avatar';
 import Button from '../../components/Button';
@@ -10,7 +10,7 @@ export class ChangeProfileData extends Block {
     super(props);
   }
 
-  protected initChildren(): void {
+  initChildren(): void {
     this.children.backButton = new BackButton({
       link: this.props.link,
       text: 'Назад к чатам',
@@ -25,6 +25,6 @@ export class ChangeProfileData extends Block {
   }
 
   protected render(): DocumentFragment {
-    return this.compile(template, {...this.props});
+    return this.compile(template, { ...this.props });
   }
 }

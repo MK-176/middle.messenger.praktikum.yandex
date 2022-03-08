@@ -1,1 +1,1 @@
-export {IBlock} from './IBlock';
+export { IBlock } from './IBlock';

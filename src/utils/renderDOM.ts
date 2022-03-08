@@ -1,4 +1,4 @@
-import {Block} from '../modules';
+import { Block } from '../modules';
 
 export function renderDOM(rootSelector: string | HTMLElement, component: Block) {
   let root;

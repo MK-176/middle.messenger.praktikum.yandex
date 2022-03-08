@@ -1,1 +1,1 @@
-export {IndexPage as default} from './IndexPage';
+export { IndexPage as default } from './IndexPage';

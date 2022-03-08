@@ -1,1 +1,1 @@
-export {BackButton as default} from './BackButton';
+export { BackButton as default } from './BackButton';

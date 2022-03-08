@@ -1,7 +1,7 @@
-import {Block} from '../../modules';
-import type {TData} from '../../Types';
+import { Block } from '../../modules';
+import type { TData } from '../../Types';
+import { setClass } from '../../utils';
 import template from './Search.hbs';
-import {setClass} from '../../utils';
 
 export class Search extends Block {
   constructor(props: TData) {
@@ -30,6 +30,6 @@ export class Search extends Block {
   }
 
   protected render(): DocumentFragment {
-    return this.compile(template, {...this.props});
+    return this.compile(template, { ...this.props });
   }
 }

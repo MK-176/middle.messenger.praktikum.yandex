@@ -1,6 +1,6 @@
+import { Block } from '../../modules';
+import type { TData } from '../../Types';
 import ButtonTmpl from './Button.hbs';
-import {Block} from '../../modules';
-import type {TData} from '../../Types';
 
 export class Button extends Block {
   constructor(props: TData) {
@@ -8,6 +8,6 @@ export class Button extends Block {
   }
 
   protected render(): DocumentFragment {
-    return this.compile(ButtonTmpl, {...this.props});
+    return this.compile(ButtonTmpl, { ...this.props });
   }
 }

@@ -1,1 +1,1 @@
-export {Notice as default} from './Notice';
+export { Notice as default } from './Notice';
