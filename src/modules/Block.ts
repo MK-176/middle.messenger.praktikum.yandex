@@ -7,7 +7,7 @@ import type {
 import { EventBus } from '../modules';
 import { isEqual, renderDOM } from '../utils';
 
-export abstract class Block {
+export class Block {
   public id = nanoid(6);
   private _element: HTMLElement | null = null;
   private eventBus: () => (EventBus);
@@ -20,7 +20,7 @@ export abstract class Block {
     FLOW_RENDER: `flow-${this.id}:render`,
   };
 
-  protected constructor(propsAndChildren: TData) {
+  constructor(propsAndChildren: TData) {
     const eventBus = new EventBus();
     const { props, children } = this.getChildren(propsAndChildren);
 
@@ -229,5 +229,13 @@ export abstract class Block {
     divGetContent(Object.values(this.children) as []);
 
     return fragment.content;
+  }
+
+  show() {
+    (this._element as HTMLElement).style.display = '';
+  }
+
+  hide() {
+    (this._element as HTMLElement).style.display = 'none';
   }
 }

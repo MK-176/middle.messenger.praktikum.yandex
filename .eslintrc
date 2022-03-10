@@ -35,6 +35,8 @@
     "no-new": "off",
     "no-plusplus": "off",
     "no-restricted-exports": "off",
-    "class-methods-use-this": "off"
+    "class-methods-use-this": "off",
+    "eslint-disable-next-line": "off",
+    "new-cap": "off"
   }
 }
