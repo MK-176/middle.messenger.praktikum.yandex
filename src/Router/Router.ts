@@ -1,5 +1,6 @@
 import { Route } from './Route';
 import { Block } from '../modules';
+import { TData } from '../Types';
 
 export class Router {
   private static instance: Router;
@@ -14,12 +15,14 @@ export class Router {
     }
     this._currentRoute = null;
     this._rootQuery = rootQuery;
-
     Router.instance = this;
   }
 
-  use(pathname: string, block: typeof Block) {
-    const route = new Route(pathname, block, { rootQuery: this._rootQuery });
+  use(pathname: string, block: typeof Block, props: TData) {
+    const route = new Route(pathname, block, {
+      ...props,
+      rootQuery: this._rootQuery,
+    });
 
     this.routes.push(route);
 

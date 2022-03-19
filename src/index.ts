@@ -1,82 +1,47 @@
-import { renderDOM, submitForm } from './utils';
+import { submitForm } from './utils';
 import Modal from './components/Modal';
 import Preloader from './components/Preloader';
+import Router from './Router';
+import IndexPage from './pages/Index';
+import Auth from './pages/Auth';
+import Register from './pages/Register';
+import Chat from './pages/Chat';
+import ChangeData from './pages/ChangeData';
+import ChangePassword from './pages/ChangePassword';
+import Profile from './pages/Profile';
+import PageError from './pages/PageError';
 
 document.addEventListener('DOMContentLoaded', async () => {
-  const path: string = window.location.pathname;
-  let Component: any;
-  let props: Record<string, any>;
+  const router = new Router('.root');
 
-  switch (path) {
-    case '/':
-    case '/index.html': {
-      Component = await import('./pages/Index');
-      props = {};
-      break;
-    }
-    case '/auth-page.html': {
-      Component = await import('./pages/Auth');
-      props = {};
-      break;
-    }
-    case '/register-page.html': {
-      Component = await import('./pages/Register');
-      props = {};
-      break;
-    }
-    case '/chat-page.html': {
-      Component = await import('./pages/Chat');
-      props = {
-        date: '19 июля',
-      };
-      break;
-    }
-    case '/change-data-page.html': {
-      Component = await import('./pages/ChangeData');
-      props = {
-        link: '/profile-page.html',
-        avatarCanChange: true,
-      };
-      break;
-    }
-    case '/change-password-page.html': {
-      Component = await import('./pages/ChangePassword');
-      props = {
-        link: '/profile-page.html',
-        avatarCanChange: false,
-      };
-      break;
-    }
-    case '/profile-page.html': {
-      Component = await import('./pages/Profile');
-      props = {
-        link: '/',
-      };
-      break;
-    }
-    case '/500-page.html': {
-      Component = await import('./pages/PageError');
-      props = {
-        title: '500',
-        subtitle: 'Мы уже фиксим',
-      };
-      break;
-    }
-    default: {
-      Component = await import('./pages/PageError');
-      props = {
-        title: '404',
-        subtitle: 'Не туда попали',
-      };
-      break;
-    }
-  }
-
-  const Page = Component.default;
-  const template = new Page(props);
-  if (template) {
-    renderDOM('.root', template);
-  }
+  router
+    .use('/', IndexPage, {})
+    .use('/index.html', IndexPage, {})
+    .use('/auth-page.html', Auth, {})
+    .use('/register-page.html', Register, {})
+    .use('/chat-page.html', Chat, {
+      date: '19 июля',
+    })
+    .use('/change-data-page.html', ChangeData, {
+      link: '/profile-page.html',
+      avatarCanChange: true,
+    })
+    .use('/change-password-page.html', ChangePassword, {
+      link: '/profile-page.html',
+      avatarCanChange: false,
+    })
+    .use('/profile-page.html', Profile, {
+      link: '/',
+    })
+    .use('/500-page.html', PageError, {
+      title: '500',
+      subtitle: 'Мы уже фиксим',
+    })
+    .use('/404-page.html', PageError, {
+      title: '404',
+      subtitle: 'Не туда попали',
+    })
+    .start();
 
   new Modal();
 
